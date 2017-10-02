@@ -2,11 +2,9 @@
 
 ## New favelets
 
-* Outline CSS Background Images
-  * (javascript:(function(){var tags=document.getElementsByTagName('*');var element;for(var i=0;i<tags.length;i++){element=tags[i];if(element.currentStyle){if(element.currentStyle['backgroundImage']!=='none')element.style.outline='2px solid #f00';}else if(window.getComputedStyle){if(document.defaultView.getComputedStyle(element,null).getPropertyValue('background-image')!=='none')element.style.outline='2px solid #f00';}}})();)
+* [Outline CSS Background Images](http://zomigi.com/demo/background-images_remove_outline.html#)
 
-* Hide CSS background images
-  * (javascript:(function(){var d=document,s=window.getComputedStyle;Array.prototype.forEach.call(d.querySelectorAll("body *"),function(el){if(s(el).backgroundImage.match(/url/)){el.style.backgroundImage="none";}});})();)
+* [Hide CSS background images](http://zomigi.com/demo/background-images_remove_outline.html#)
 
 * Outline and Hide CSS background images
   * (javascript:(function(){var tags=document.getElementsByTagName('*');var element;for(var i=0;i<tags.length;i++){element=tags[i];if(element.currentStyle){if(element.currentStyle['backgroundImage']!=='none')element.style.outline='2px solid #f00';}else if(window.getComputedStyle){if(document.defaultView.getComputedStyle(element,null).getPropertyValue('background-image')!=='none')element.style.outline='2px solid #f00';}}if(confirm("Do you want to hide the background images?")==true){for(var i=0;i<tags.length;i++){element=tags[i];if(element.currentStyle){if(element.currentStyle['backgroundImage']!=='none')element.style.backgroundImage='none';}else if(window.getComputedStyle){if(document.defaultView.getComputedStyle(element,null).getPropertyValue('background-image')!=='none')element.style.backgroundImage='none';}}}else{alert("Background images will be outlined.");}})();)
