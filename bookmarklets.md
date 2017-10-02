@@ -1,6 +1,6 @@
-# New TT Bookmarklets (updated 10/2/2017)
+# Testing for Accessibility Bookmarklets (updated 10/2/2017)
 
-### New favelets for TT
+## New favelets
 
 * Outline CSS Background Images
   * (javascript:(function(){var tags=document.getElementsByTagName('*');var element;for(var i=0;i<tags.length;i++){element=tags[i];if(element.currentStyle){if(element.currentStyle['backgroundImage']!=='none')element.style.outline='2px solid #f00';}else if(window.getComputedStyle){if(document.defaultView.getComputedStyle(element,null).getPropertyValue('background-image')!=='none')element.style.outline='2px solid #f00';}}})();)
@@ -19,6 +19,8 @@
 
 * Page Title
   * (javascript:(function(){alert("The page title is: "+document.title);})();)
+
+## Other good ones
 
 * [Validate This Page In New Window](https://validator.w3.org/favelets.html)
 
