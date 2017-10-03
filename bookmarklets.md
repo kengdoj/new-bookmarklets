@@ -1,5 +1,8 @@
 # Testing for Accessibility Bookmarklets (updated 10/2/2017)
 
+## Create a bookmarklet
+I like to use this [Bookmarklet Crunchinator](http://ted.mielczarek.org/code/mozilla/bookmarklet.html). 
+
 ## New favelets
 
 * Outline and Hide CSS background images
