@@ -20,6 +20,9 @@ I like to use this [Bookmarklet Crunchinator](http://ted.mielczarek.org/code/moz
 * Page Title
   * (javascript:(function(){alert("The page title is: "+document.title);})();)
 
+* Highlight Icon (fonts), cannot typed in html unicode fonts.
+ * (javascript:(function(){var sheet=document.createElement('style');sheet.innerHTML="i, .fa, .glyphicon, .material-icons, [data-icon] { background-color: lime; }";document.body.appendChild(sheet);})();)
+
 ## These are Good ones too..
 
 * [Outline CSS Background Images](http://zomigi.com/demo/background-images_remove_outline.html#)
