@@ -1,4 +1,4 @@
-# Testing for Accessibility Bookmarklets (updated 10/11/2017)
+# Testing for Accessibility Bookmarklets (updated 10/23/2017)
 
 ## Create a bookmarklet
 I like to use this [Bookmarklet Crunchinator](http://ted.mielczarek.org/code/mozilla/bookmarklet.html). 
@@ -20,7 +20,7 @@ I like to use this [Bookmarklet Crunchinator](http://ted.mielczarek.org/code/moz
 * Page Title
   * javascript:(function(){alert("The page title is: "+document.title);})();
 
-* Highlight Icon (fonts), cannot typed in html unicode fonts.
+* Highlight Icon (fonts), doesn't work on typed html unicode fonts...yet.
   * javascript:(function(){var sheet=document.createElement('style');sheet.innerHTML="i, .fa, .glyphicon, .material-icons, [data-icon] { background-color: lime; }";document.body.appendChild(sheet);})();
 
 ## These are Good ones too..
