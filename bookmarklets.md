@@ -1,9 +1,15 @@
-# Testing for Accessibility Bookmarklets (updated 10/23/2017)
+# Testing for Accessibility (updated 4/2/2018)
+
+Here's a page to test Flash (red or general flash)
+
 
 ## Create a bookmarklet
 I like to use this [Bookmarklet Crunchinator](http://ted.mielczarek.org/code/mozilla/bookmarklet.html). 
 
 ## New favelets
+
+* Flash rectangle overlay
+ * javascript:(function(){{var add_div=document.createElement('div');add_div.setAttribute('id','mydiv');add_div.style.position="absolute";add_div.style.zIndex="9";add_div.innerHTML='<canvas id="myCanvas" width="256" height="341" style="border:1px solid #000000; background:#8080C0;">';document.body.appendChild(add_div);dragElement(document.getElementById(("mydiv")));function dragElement(elmnt){var pos1=0,pos2=0,pos3=0,pos4=0;if(document.getElementById(elmnt.id+"header")){document.getElementById(elmnt.id+"header").onmousedown=dragMouseDown;}else{elmnt.onmousedown=dragMouseDown;}function dragMouseDown(e){e=e||window.event;pos3=e.clientX;pos4=e.clientY;document.onmouseup=closeDragElement;document.onmousemove=elementDrag;}function elementDrag(e){e=e||window.event;pos1=pos3-e.clientX;pos2=pos4-e.clientY;pos3=e.clientX;pos4=e.clientY;elmnt.style.top=(elmnt.offsetTop-pos2)+"px";elmnt.style.left=(elmnt.offsetLeft-pos1)+"px";}function closeDragElement(){document.onmouseup=null;document.onmousemove=null;}}}})();
 
 * Outline and Hide CSS background images
   * javascript:(function(){var tags=document.getElementsByTagName('*');var element;for(var i=0;i<tags.length;i++){element=tags[i];if(element.currentStyle){if(element.currentStyle['backgroundImage']!=='none')element.style.outline='2px solid #f00';}else if(window.getComputedStyle){if(document.defaultView.getComputedStyle(element,null).getPropertyValue('background-image')!=='none')element.style.outline='2px solid #f00';}}if(confirm("Do you want to hide the background images?")==true){for(var i=0;i<tags.length;i++){element=tags[i];if(element.currentStyle){if(element.currentStyle['backgroundImage']!=='none')element.style.backgroundImage='none';}else if(window.getComputedStyle){if(document.defaultView.getComputedStyle(element,null).getPropertyValue('background-image')!=='none')element.style.backgroundImage='none';}}}else{alert("Background images will be outlined.");}})();
