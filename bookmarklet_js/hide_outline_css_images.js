@@ -1,4 +1,4 @@
-(function(){
+(function() {
   var tags=document.getElementsByTagName('*');
   var element;
   for(var i=0;i<tags.length;i++){
@@ -23,6 +23,4 @@
   } else {
     alert("Background images will be outlined.");
   }
-}
-)
-()
+})();
