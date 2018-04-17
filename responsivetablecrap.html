@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Responsive tables to tabs and accordions</title>
+<style>
+/* Variables
+================================== */
+/* Tables
+================================== */
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400,700);
+.Rtable {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0 0 3em 0;
+  padding: 0;
+}
+.Rtable-cell {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 100%;
+  padding: 0.8em 1.2em;
+  overflow: hidden;
+  list-style: none;
+  border: solid 3px white;
+  background: rgba(112, 128, 144, 0.2);
+}
+.Rtable-cell > h1,
+.Rtable-cell > h2,
+.Rtable-cell > h3,
+.Rtable-cell > h4,
+.Rtable-cell > h5,
+.Rtable-cell > h6 {
+  margin: 0;
+}
+/* Table column sizing
+================================== */
+.Rtable--2cols > .Rtable-cell {
+  width: 50%;
+}
+.Rtable--3cols > .Rtable-cell {
+  width: 33.33%;
+}
+.Rtable--4cols > .Rtable-cell {
+  width: 25%;
+}
+.Rtable--5cols > .Rtable-cell {
+  width: 20%;
+}
+.Rtable--6cols > .Rtable-cell {
+  width: 16.6%;
+}
+/* Page styling
+================================== */
+html {
+  height: 100%;
+  background-color: #EEE;
+}
+body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 2em;
+  max-width: 800px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.2em;
+  background-color: white;
+  border: double 3px #DDD;
+  border-top: none;
+  border-bottom: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}
+h3 {
+  font-size: 1.2em;
+}
+h4 {
+  font-size: 1em;
+}
+strong {
+  color: #434d57;
+}
+/* Apply styles
+================================== */
+.Rtable {
+  position: relative;
+  top: 3px;
+  left: 3px;
+}
+.Rtable-cell {
+  margin: -3px 0 0 -3px;
+  background-color: white;
+  border-color: #e2e6e9;
+}
+/* Cell styles
+================================== */
+.Rtable-cell--dark {
+  background-color: slategrey;
+  border-color: #5a6673;
+  color: white;
+}
+.Rtable-cell--dark > h1,
+.Rtable-cell--dark > h2,
+.Rtable-cell--dark > h3,
+.Rtable-cell--dark > h4,
+.Rtable-cell--dark > h5,
+.Rtable-cell--dark > h6 {
+  color: white;
+}
+.Rtable-cell--medium {
+  background-color: #b8c0c8;
+  border-color: #a9b3bc;
+}
+.Rtable-cell--light {
+  background-color: white;
+  border-color: #e2e6e9;
+}
+.Rtable-cell--highlight {
+  background-color: lightgreen;
+  border-color: #64e764;
+}
+.Rtable-cell--alert {
+  background-color: darkorange;
+  border-color: #cc7000;
+  color: white;
+}
+.Rtable-cell--alert > h1,
+.Rtable-cell--alert > h2,
+.Rtable-cell--alert > h3,
+.Rtable-cell--alert > h4,
+.Rtable-cell--alert > h5,
+.Rtable-cell--alert > h6 {
+  color: white;
+}
+.Rtable-cell--head {
+  background-color: slategrey;
+  border-color: #5a6673;
+  color: white;
+}
+.Rtable-cell--head > h1,
+.Rtable-cell--head > h2,
+.Rtable-cell--head > h3,
+.Rtable-cell--head > h4,
+.Rtable-cell--head > h5,
+.Rtable-cell--head > h6 {
+  color: white;
+}
+.Rtable-cell--foot {
+  background-color: #b8c0c8;
+  border-color: #a9b3bc;
+}
+/* Responsive
+==================================== */
+@media all and (max-width: 500px) {
+  .Rtable--collapse {
+    display: block;
+  }
+  .Rtable--collapse > .Rtable-cell {
+    width: 100% !important;
+  }
+  .Rtable--collapse > .Rtable-cell--foot {
+    margin-bottom: 1em;
+  }
+}
+.no-flexbox .Rtable {
+  display: block;
+}
+.no-flexbox .Rtable > .Rtable-cell {
+  width: 100%;
+}
+.no-flexbox .Rtable > .Rtable-cell--foot {
+  margin-bottom: 1em;
+}
+@media all and (max-width: 500px) {
+  .hiddenSmall {
+    display: none;
+  }
+}
+/* Tab Styling
+==================================== */
+.Tablist {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-left: -3px;
+}
+@media all and (min-width: 500px) {
+  .Tablist {
+    display: none;
+  }
+}
+.Tab {
+  padding: 0.6em 1em;
+  margin: 0 3px 3px 0;
+  text-align: center;
+  background-color: darkcyan;
+  border: solid 3px darkcyan;
+  border-bottom-width: 0;
+  border-radius: 0.5em 0.5em 0 0;
+  font-weight: bold;
+  color: #002525;
+  text-decoration: none;
+  -webkit-transition: background-color 0.1s;
+  transition: background-color 0.1s;
+  cursor: pointer;
+}
+.Tab:hover,
+.Tab:focus {
+  background-color: #199797;
+  border-color: #199797;
+  outline: none;
+}
+.Tab[aria-selected="false"]:active {
+  margin-top: 0.2em;
+  padding-bottom: 0.4em;
+}
+.Tab[aria-selected="true"] {
+  background: #e6f3f3;
+  cursor: default;
+}
+/* Accordion Styling
+==================================== */
+.Accordion {
+  position: relative;
+  top: -3px;
+  left: -3px;
+  width: 100%;
+  margin: 0 0 0.5em 0;
+  padding: 0.6em 0.6em 0.6em 2em;
+  border-radius: 0.5em;
+  text-align: left;
+  border: solid 3px #007676;
+  background-color: darkcyan;
+  font-weight: bold;
+  color: #002525;
+  text-decoration: none;
+  -webkit-transition: background-color 0.1s;
+  transition: background-color 0.1s;
+  cursor: pointer;
+}
+@media all and (min-width: 500px) {
+  .Accordion {
+    display: none;
+  }
+}
+.Accordion:hover,
+.Accordion:focus {
+  outline: none;
+  -webkit-filter: contrast(150%);
+          filter: contrast(150%);
+}
+.Accordion[aria-selected="true"] {
+  margin-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-width: 0;
+  background: #b3dcdc;
+}
+.Accordion:before {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  left: 0.3em;
+  margin-top: -1.14285714em;
+  font-weight: normal;
+  font-size: 2em;
+  line-height: 2em;
+  background-size: 2em 2em;
+}
+.Accordion[aria-selected="true"]:before {
+  content: "-";
+}
+.js-RtableTabs,
+.js-RtableAccordions {
+  min-width: 240px;
+}
+</style>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous">
+  </script>
+</head>
+<body>
+
+	<h2>Collapse to Tabs</h2>
+<div class="Rtable Rtable--3cols Rtable--collapse js-RtableTabs">
+  
+  <div class="Tablist" role="tablist"> 
+    <button class="Tab" role="tab" aria-selected="true">Ned</button>
+    <button class="Tab" role="tab" aria-selected="false">Jon</button>
+    <button class="Tab" role="tab" aria-selected="false">Arya</button>
+  </div>
+
+  <div style="order:0;" class="Rtable-cell Rtable-cell--head"><h3>Eddard Stark</h3></div>
+  <div style="order:1;" class="Rtable-cell">Has a sword named Ice</div>
+  <div style="order:2;" class="Rtable-cell">No direwolf</div>
+  <div style="order:3;" class="Rtable-cell Rtable-cell--foot"><strong>Lord of Winterfell</strong></div>
+
+  <div style="order:0;" class="Rtable-cell Rtable-cell--head"><h3>Jon Snow</h3></div>
+  <div style="order:1;" class="Rtable-cell">Has a sword named Longclaw</div>
+  <div style="order:2;" class="Rtable-cell">Direwolf: Ghost</div>
+  <div style="order:3;" class="Rtable-cell Rtable-cell--foot"><strong>Knows nothing</strong></div>
+
+  <div style="order:0;" class="Rtable-cell Rtable-cell--head"><h3>Arya Stark</h3></div>
+  <div style="order:1;" class="Rtable-cell">Has a sword named Needle</div>
+  <div style="order:2;" class="Rtable-cell">Direwolf: Nymeria</div>
+  <div style="order:3;" class="Rtable-cell Rtable-cell--foot"><strong>No one</strong></div>
+
+</div>
+
+
+<h2>Collapse to Accordions</h2>
+<div class="Rtable Rtable--4cols Rtable--collapse js-RtableAccordions">
+  
+  <button class="Accordion" role="tab" aria-selected="true">Ned</button>
+  <div class="Rtable-cell  Rtable-cell--head"><h3>Eddard Stark</h3></div>
+  <div class="Rtable-cell">Has a sword named Ice</div>
+  <div class="Rtable-cell">No direwolf</div>
+  <div class="Rtable-cell  Rtable-cell--foot"><strong>Lord of Winterfell</strong></div>
+  
+  <button class="Accordion" role="tab" aria-selected="false">Jon</button>
+  <div class="Rtable-cell  Rtable-cell--head"><h3>Jon Snow</h3></div>
+  <div class="Rtable-cell">Has a sword named Longclaw</div>
+  <div class="Rtable-cell">Direwolf: Ghost</div>
+  <div class="Rtable-cell  Rtable-cell--foot"><strong>Knows nothing</strong></div>
+  
+  <button class="Accordion" role="tab" aria-selected="false">Arya</button>
+  <div class="Rtable-cell  Rtable-cell--head"><h3>Arya Stark</h3></div>
+  <div class="Rtable-cell">Has a sword named Needle</div>
+  <div class="Rtable-cell">Direwolf: Nymeria</div>
+  <div class="Rtable-cell  Rtable-cell--foot"><strong>No one</strong></div>
+
+</div>
+
+
+<ul>
+  <li>Tab and accordion markup sits IN the table in a logical position</li>
+  <li>Toggle either row or column depending on table content</li>
+  <li>Use 'display:none' to toggle for both visual users and screen readers</li>
+</ul>
+<script type="text/javascript">
+(function ($) {
+  "use strict";
+  $.fn.responsiveTable = function() { 
+
+    var toggleColumns = function($table) {
+      var selectedControls = [];
+      $table.find(".Accordion, .Tab").each( function() {
+        selectedControls.push( $(this).attr("aria-selected") );
+      });
+      var cellCount = 0, colCount = 0;
+      var setNum = $table.find(".Rtable-cell").length / Math.max( $table.find(".Tab").length, $table.find(".Accordion").length );
+      $table.find(".Rtable-cell").each( function() {
+        $(this).addClass("hiddenSmall");
+        if( selectedControls[colCount] === "true" ) $(this).removeClass("hiddenSmall");
+        cellCount++;
+        if( cellCount % setNum === 0 ) colCount++; 
+      });
+    };
+    $(this).each(function(){ toggleColumns($(this)); });
+
+    $(this).find(".Tab").click( function() {
+      $(this).attr("aria-selected","true").siblings().attr("aria-selected","false");
+      toggleColumns( $(this).parents(".Rtable") );
+    });
+
+    $(this).find(".Accordion").click( function() {
+      $(this).attr("aria-selected", $(this).attr("aria-selected") !== "true" );
+      toggleColumns( $(this).parents(".Rtable") );
+    });
+
+  };
+}(jQuery));
+
+
+$(".js-RtableTabs, .js-RtableAccordions").responsiveTable();
+</script>
+
+</body>
+</html>

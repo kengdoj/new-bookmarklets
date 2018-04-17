@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Data Tables Examples</title>
+<style>
+div.blueTable {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+.divTable.blueTable .divTableCell, .divTable.blueTable .divTableHead {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+.divTable.blueTable .divTableBody .divTableCell {
+  font-size: 13px;
+}
+.divTable.blueTable .divTableRow:nth-child(even) {
+  background: #D0E4F5;
+}
+.divTable.blueTable .divTableHeading {
+  background: #1C6EA4;
+  background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  border-bottom: 2px solid #444444;
+}
+.divTable.blueTable .divTableHeading .divTableHead {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-left: 2px solid #D0E4F5;
+}
+.divTable.blueTable .divTableHeading .divTableHead:first-child {
+  border-left: none;
+}
+
+.blueTable .tableFootStyle {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #D0E4F5;
+  background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  border-top: 2px solid #444444;
+}
+.blueTable .tableFootStyle {
+  font-size: 14px;
+}
+.blueTable .tableFootStyle .links {
+	 text-align: right;
+}
+.blueTable .tableFootStyle .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+.blueTable.outerTableFooter {
+  border-top: none;
+}
+.blueTable.outerTableFooter .tableFootStyle {
+  padding: 3px 5px; 
+}
+/* DivTable.com */
+.divTable{ display: table; }
+.divTableRow { display: table-row; }
+.divTableHeading { display: table-header-group;}
+.divTableCell, .divTableHead { display: table-cell;}
+.divTableHeading { display: table-header-group;}
+.divTableFoot { display: table-footer-group;}
+.divTableBody { display: table-row-group;}
+
+
+
+table.blueTable2 {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.blueTable2 td, table.blueTable2 th {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+table.blueTable2 tbody td {
+  font-size: 13px;
+}
+table.blueTable2 tr:nth-child(even) {
+  background: #D0E4F5;
+}
+table.blueTable2 thead {
+  background: #1C6EA4;
+  background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  border-bottom: 2px solid #444444;
+}
+table.blueTable2 thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-left: 2px solid #D0E4F5;
+}
+table.blueTable2 thead th:first-child {
+  border-left: none;
+}
+
+table.blueTable2 tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #D0E4F5;
+  background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  border-top: 2px solid #444444;
+}
+table.blueTable2 tfoot td {
+  font-size: 14px;
+}
+table.blueTable2 tfoot .links {
+  text-align: right;
+}
+table.blueTable2 tfoot .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+</style>
+</head>
+
+
+<body>
+<!-- source: http://divtable.com/generator/; accessibility from http://davidmacd.com/test/grid.html -->
+<h1>Table of divs</h1>
+<div class="divTable blueTable" role="grid">
+	<div class="divTableHeading">
+		<div class="divTableRow" role="row">
+			<div class="divTableHead" role="columnheader">First name</div>
+			<div class="divTableHead" role="columnheader">Last name</div>
+			<div class="divTableHead" role="columnheader">Age</div>
+			<div class="divTableHead" role="columnheader">Enrolled?</div>
+		</div>
+	</div>
+	<div class="divTableBody">
+		<div class="divTableRow" role="row">
+			<div class="divTableCell" role="rowheader">Joe</div>
+			<div class="divTableCell" role="gridcell">Smith</div>
+			<div class="divTableCell" role="gridcell">6</div>
+		<div class="divTableCell" role="gridcell">N</div>
+		</div>
+		<div class="divTableRow" role="row">
+			<div class="divTableCell" role="rowheader">Mike</div>
+			<div class="divTableCell" role="gridcell">Palmer</div>
+			<div class="divTableCell" role="gridcell">8</div>
+			<div class="divTableCell" role="gridcell">Y</div>
+		</div>
+		<div class="divTableRow" role="row">
+			<div class="divTableCell" role="rowheader">Bill</div>
+			<div class="divTableCell" role="gridcell">Carson</div>
+			<div class="divTableCell" role="gridcell">4</div>
+			<div class="divTableCell" role="gridcell">N</div>
+		</div>
+	</div>
+</div>
+<!-- DivTable.com -->
+
+<!-- HTML structure table -->
+<h1>Table of HTML table</h1>
+<table class="blueTable2">
+<thead>
+<tr>
+<th scope="col">Last Name</th>
+<th scope="col">First Name</th>
+<th scope="col">Enrolled?</th>
+<th scope="col">Age</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Hill</th>
+<td>Sam</td>
+<td>Y</td>
+<td>10</td>
+</tr>
+<tr>
+<th scope="row">Brown</th>
+<td>Mary</td>
+<td>N</td>
+<td>12</td>
+</tr>
+<tr>
+<th scope="row">Black</th>
+<td>Tony</td>
+<td>Y</td>
+<td>9</td>
+</tr>
+
+</tbody>
+</table>
+
+<!-- HTML structure table -->
+<h1>Table of HTML table, row header in second col</h1>
+<table class="blueTable2">
+<thead>
+<tr>
+<th scope="col">Last Name</th>
+<th scope="col">First Name</th>
+<th scope="col">Enrolled?</th>
+<th scope="col">Age</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hill</td>
+<th scope="row">Sam</th>
+<td>Y</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Brown</td>
+<th scope="row">Mary</th>
+<td>N</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Black</td>
+<th scope="row">Tony</th>
+<td>Y</td>
+<td>9</td>
+</tr>
+
+</tbody>
+</table>
+
+<!-- <h1>Need a grid interactive example</h1> -->
+<!-- see https://www.w3.org/TR/wai-aria-practices/examples/grid/dataGrids.html -->
+
+</body>
+</html>
