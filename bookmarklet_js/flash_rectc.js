@@ -1,12 +1,26 @@
-(function on() {
-var block_to_insert;
-var insert_this;
-block_to_insert= document.createElement = ('div');
-block_to_insert.innerHTML = '<canvas id=\"myCanvas\" width=\"341\" height=\"256\" style=\"border:1px solid #000000; background:#8080C0;\">' ;
-block_to_insert.id = 'mydiv';
-}
+(function() {
+	var add_div = document.createElement('div');
+	add_div.setAttribute('id', 'mydiv');
+    add_div.style.position = "absolute";
+    add_div.style.zIndex = "9";
+	//add option to choose vertical or horizontal rectangle
+	var ori = prompt("Enter 'h' for a horizontal rectangle or 'v' for a vertical rectangle:");
+	if (ori == "h") {
+		//Horizontal rectangle
+		add_div.innerHTML = '<canvas id="myCanvas" width="341" height="256" style="border:1px solid #000000; background:#8080C0;">';
+		
+	} 
+		else if (ori == "v") {
+		//Vertical rectangle
+		add_div.innerHTML = '<canvas id="myCanvas" width="256" height="341" style="border:1px solid #000000; background:#8080C0;">';
+	} else {return;}
+	
+	//add div to body end
+    //document.body.appendChild(add_div);
+	//add div to top of body
+	document.body.insertBefore(add_div, document.body.firstChild);
 
-//Make the DIV element draggable:
+//Make the DIV element draggable: https://www.w3schools.com/howto/howto_js_draggable.asp
 dragElement(document.getElementById(("mydiv")));
 
 function dragElement(elmnt) {
@@ -47,4 +61,4 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
-)();
+})();
