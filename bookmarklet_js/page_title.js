@@ -1,4 +1,4 @@
 (function() {
-alert("The page title is: "+document.title);
+  alert("The page title is: "+document.title);
 }
 )();
