@@ -35,4 +35,4 @@ function blink3() {
         				x.style.visibility = "hidden";
     				}  
 }
-}
+})();
