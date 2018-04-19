@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Accessible Name Tests</title>
+<style type="text/css">
+/***********General*************************/
+body  {
+	height: 100%;
+	font-size: 14px;
+	font-family: Ariel, Helvetica, sans-serif;
+	line-height: 1.4em;
+	margin:0 auto;
+	width:90%;
+	color:#303030;
+	word-wrap: break-word;
+}
+h1, h2, h3, h4, h5, h6 {font-family: Arial, sans-serif;}
+
+h1 {
+	font-size:2em;
+	font-weight:600;
+	color:#004380;
+}
+
+h2 {
+	font-size: 1.8em;
+	font-weight: 600;
+	margin-top:1.3em;
+	color:#004380;
+}
+
+h3 {
+	font-size:1.2em;
+	font-weight: 700;
+	margin-top:1.5em;
+	margin-bottom: 0;
+	color: #004080;
+}
+h4 {
+	font-size:1.1em;
+	font-weight: 600;
+	margin-top:1.5em;
+	margin-bottom: 0;
+	color: #004080;
+}
+</style>
+</head>
+
+<body>
+<h1>Accessible Name and Accessible Description Tools Comparison</h1>
+<h2>Forms with label, for, title, aria-labelledby combinations</h2>
+<form>
+<table border="1">
+<tr>
+	<th scope=col>Form</th>
+	<th scope=col>MS Inspect</th>
+	<th scope=col>A-B (Gunderson) Forms favelet</th>
+	<th scope=col>AViewer</th>
+	<th scope=col>Visual ARIA</th>
+</tr>
+<tr>
+	<td>1. Label for, no id, title; <br>
+		<Label for="Question">Label for, no ID</label><input type="text" title="title">
+	</td>
+	<td>(No ARIA; Inspect would not be used for this in TT process.)<br>Chrome and IE:AccName=title</td>
+	<td> Chrome and IE:AccName=title
+	</td>
+	<td>Chrome and IE: accName=title
+	</td>
+	<td>Chrome and IE: accName=title<br> <mark>**No markup on page until mouseover on form.</mark>
+	</td>
+</tr>
+<tr>
+	<td>2. Label for, good id, title; <br>
+		<Label for="Question1">Label for/id</label><input type="text" title="title" id="Question1">
+	</td>
+	<td>(No ARIA; Inspect would not be used for this in TT process.)<br>Chrome and IE: AccName=Label for/id, AccDescription=title </td>
+	<td>Chrome and IE: AccName=Label for/id, AccDescription=title
+	</td>
+	<td>Chrome and IE:<br>accName=Label for/id, AccDescription=title
+	</td>
+	<td>Chrome and IE: AccName=Label for/id; AccDescription=title <br><mark>**No markup on page until mouseover on form.</mark>
+</tr>
+<tr>
+	<td>3. Label (INPUT not enclosed), no id, title; <br>
+		<Label>Question</label><input type="text" title="title">
+	</td>
+	<td>(No ARIA; Inspect would not be used for this in TT process.)<br>Chrome and IE: AccName=title </td>
+	<td>Chrome and IE: AccName=title
+	</td>
+	<td>Chrome and IE:<br> AccName=title
+	</td>
+	<td>Chrome and IE: accName=title<br> <mark>**No markup on page until mouseover on form.</mark>
+	</td>
+</tr>
+<tr>
+	<td>3b. Enclosed form Label implicit <br>
+		<Label>Question<input type="text"></label>
+	</td>
+	<td>(No ARIA; Inspect would not be used for this in TT process.)<br>check - Chrome and IE: AccName=Question </td>
+	<td>check - Chrome and IE: AccName=Question (From label encapsulation)
+	</td>
+	<td>check - Chrome and IE:<br> AccName=title
+	</td>
+	<td>check - Chrome and IE: accName=title<br> <mark>**No markup on page until mouseover on form.</mark>
+	</td>
+</tr>
+<tr>
+	<td>4. Fieldset, Legend, label for, id; <br>
+		<fieldset> 
+			<legend>Legend</legend> 
+      			<div class="text"> 
+      				<label for="name1">Label for/id</label> 
+				<input type="text" id="name1" size="30"/> 
+   			</div>
+		</fieldset>
+	</td>
+	<td>(No ARIA; Inspect would not be used for this in TT process.)<br><mark>**Chrome and IE: (fieldset/legend missing)</mark><br>AccName= label for/id </td>
+	<td> Chrome: GroupLabel=fieldset/legend, AccName=label for/id<br>IE: AccName=label for/id <mark>**(fieldset/legend missing)</mark>
+	</td>
+	<td><mark>**Chrome and IE: (fieldset/legend missing)</mark><br>AccName= label for/id
+	</td>
+	<td>Chrome and IE: AccName=label for/id <mark>**(fieldset/legend missing)</mark><br> <mark>**No markup on page until mouseover on form.</mark>
+</tr>
+<tr>
+	<td>5. Fieldset, Legend, label for, id AND title; <br>
+		<fieldset> 
+			<legend>Legend</legend> 
+      
+			<div class="text"> 
+				<label for="name2">Label for/id</label> 
+				<input type="text" id="name2" size="30"title="title"/> 
+			</div>
+		</fieldset>
+	</td>
+	<td>(No ARIA; Inspect would not be used for this in TT process.)<br><mark>**Chrome and IE: (fieldset/legend missing)</mark><br> AccName= label for/id, AccDescription=title </td>
+	<td> Chrome: GroupLabel=fieldset/legend, AccName=label for/id, AccDescription=title<br>IE: AccName=label for/id, AccDescription=title <mark>**(fieldset/legend missing)</mark>
+	</td>
+	<td><mark>**Chrome and IE: (fieldset/legend missing)</mark><br> AccName= label for/id, AccDescription=title
+	</td>
+	<td><mark>**Chrome and IE: (fieldset/legend missing)</mark><br> AccName= label for/id, AccDescription=title <br> <mark>**No markup on page until mouseover on form.</mark>
+	</td>
+</tr>
+<tr>
+	<td>6. aria-labelledby refers to 2 IDs;<br>
+		<div class="group"> 
+			<div class="legend" id="ba6">Label2</div> 
+			<div id="zip6">Label1</div> 
+			<input type="text" aria-labelledby="zip6 ba6" size="12"/>          
+		</div> 	 
+	</td>
+	<td>(same as AViewer)<br>Chrome: AccName= Label1 Label2<br><mark>IE: Name="", aria-labelledby="zip6 ba6"</mark> </td>
+	<td>Chrome and IE: AccName= Label1 Label2
+	</td>
+	<td><mark>**Chrome: Accname=text of the 2 IDs in aria-labelledby <br>IE: AccName=none, AccDescription=none, ARIA attributes and UIAutomation CurrentAriaProperties says only the 2 IDs in aria-labelledby, but not the text of the IDs</mark>
+	</td>
+	<td>Chrome and IE: AccName=Label1 Label2 <br> <mark>"In IE, [ARIA]" markup of ID's on page is in black font so it's hard to find. In Chrome, markup is green and bolded. In both, markup disappears when mouseover on form.</mark>
+
+</tr>
+<tr>
+	<td>7. label for/id and aria-labelledby refers to 2 IDs;<br>
+		<div class="group"> 
+			<div class="legend" id="ba7">Label7</div> 
+			<div id="zip7">Label5</div> <label for="label">Label for/id</label>
+        		<input type="text" id="label" aria-labelledby="zip7 ba7" size="12"/>          
+		</div> 	 
+	</td>
+	<td>(same as Aviewer)<br>Chrome: AccName=Label5 Label7 <mark>(Label for/id ignored)</mark><br>IE: AccName: "Label for/id", AriaProperties: "labelledby=zip7 ba7;" </td>
+	<td>Chrome and IE: AccName=Label5 Label7 (Label for/id is ignored)
+	</td>
+	<td><mark>**Chrome: Accname=text of the 2 IDs in aria-labelledby, AccDescription=none (label for/id ignored)<br> IE: AccName=label for/id, AccDescription=none, ARIA attributes and UIAutomation CurrentAriaProperties says only the 2 IDs in aria-labelledby, but not the text of the IDs</mark>
+	</td>
+	<td>Chrome and IE: Accname=Label5 Label7, AccDescription=""; (label for/id is ignored) <br> <mark>"In IE, [ARIA]" markup of ID's on page is in black font so it's hard to find. In Chrome, markup is green and bolded. In both, markup disappears when mouseover on form.</mark>
+	</td>
+</tr>
+<tr>
+	<td>8. aria-labelledby refers to 2 IDs AND title;<br>
+		<div class="group"> 
+	        	<div class="legend" id="ba8">Label8</div> 
+	        	<div id="zip8">Label9</div> 
+			<input type="text" aria-labelledby="zip8 ba8" size="12" title="title"/>          
+		</div> 	 
+	</td>
+	<td>(same as Aviewer)<br>Chrome: AccName= "Label9 Label8", AccDescription="title"<br><mark>IE: AccName="title", ARIAProperties: "labelledby=zip8 ba8;"</mark>
+ </td>
+	<td>Chrome and IE: AccName=Label9 Label8, AccDescription=title
+	</td>
+	<td><mark>**Chrome: Accname=text of the 2 IDs in aria-labelledby, AccDescription=title <br>IE: AccName=title, AccDescription=none,  ARIA attributes and UIAutomation CurrentAriaProperties says only the 2 IDs in aria-labelledby, but not the text of the IDs</mark>
+	</td>
+	<td>Chrome and IE: accName= Label9 Label8, accDescription="title" <br> <mark>"In IE, [ARIA]" markup of ID's on page is in black font so it's hard to find and disappears on mouseover on form. In Chrome, markup is green and bolded. In both, markup disappears when mouseover on form.</mark>
+</tr>
+<tr>
+    <td>9. Label and aria-describedby; <br>
+		<label for="resetpass">Label10</label>
+		<input type="text" name="resetpass" id="resetpass" aria-describedby="newpass"> <br>
+		<span id="newpass">acc-describedby content</span>
+	</td>
+	<td>Chrome:AccName=Label10 Label10, AccDescription=acc-describedby content<br><mark>IE: AccName="Label10", AccDescription="", ARIAProperties: "describedby=newpass;"</mark></td>
+	<td>Chrome and IE: AccName=Label10, AccDescription=acc-describedby content
+	</td>
+	<td>No property labels provided; difficult to analyze<br>Chrome:Label10 and acc-describedby content<br>IE: Label10 and describedby=ID (not the content)
+	</td>
+	<td>Chrome and IE: Aria-describedby ID marked (no label info), onhover: accName:"Label10" accDescription: acc-describedby content<br> <mark>"In IE, [ARIA]" markup of ID's on page is in black font so it's hard to find and disappears on mouseover on form. In Chrome, markup is green and bolded. In both, markup disappears when mouseover on form.</mark>
+	</td>
+</tr>
+<tr>
+    <td>10. Label and aria-required; <br>
+		<label for="resetpass2">Label10</label>
+		<input type="text" name="resetpass2" id="resetpass2" aria-required="true">* <br>
+	</td>
+	<td><mark>Chrome:AccName="Label10"; aria-required is ignored but WAFbeta shows aria-required true</mark><br>  IE: AccName="Label10", ARIAProperties: "required=true;", WAFbeta shows aria-required true</td>
+	<td>Chrome and IE: AccName=Label10, <mark>aria-required is ignored</mark>
+	</td>
+	<td>No property labels provided; difficult to analyze<br>Chrome:Label10, <mark>aria-required is ignored</mark> <br>IE: Label10, required=true
+	</td>
+	<td>Chrome and IE: no markup, onhover: accName:"Label10"<br> <mark>"In IE, [ARIA]" markup of ID's on page is in black font so it's hard to find and disappears on mouseover on form. In Chrome, markup is green and bolded. In both, markup disappears when mouseover on form.</mark>
+	</td>
+</tr>
+<tr>
+	<td>11. aria-labelledby refers to 2 IDs; aria-required=true<br>
+		<div class="group"> 
+			<div class="legend" id="ba11">Label2</div> 
+			<div id="zip11">Label1</div> 
+			<input type="text" aria-labelledby="zip11 ba11" aria-required="true" size="12"/>*          
+		</div> 	 
+	</td>
+	<td>(same as AViewer)<br>Chrome: AccName= Label1 Label2, WAFbeta shows aria-required true and marks ID's but not arialabelledby<mark><br>IE: Name="", aria-labelledby="zip2 ba" aria required is not marked. WAFbeta does not show aria required true, but shows aria labelledby and marks IDs. </mark> </td>
+	<td>Chrome and IE: AccName= Label1 Label2
+	</td>
+	<td><mark>**Chrome: Accname=text of the 2 IDs in aria-labelledby <br>IE: AccName=none, AccDescription=none, ARIA attributes and UIAutomation CurrentAriaProperties says only the 2 IDs in aria-labelledby, but not the text of the IDs</mark>
+	</td>
+	<td>Chrome and IE: AccName=Label1 Label2 <br> <mark>"In IE, [ARIA]" markup of ID's on page is in black font so it's hard to find. In Chrome, markup is green and bolded. In both, markup disappears when mouseover on form.</mark>
+</tr>
+<tr>
+    <td>12. Label and aria-describedby; aria-required=true <br>
+		<label for="resetpass12">Label10</label>
+		<input type="text" name="resetpass12" id="resetpass12" aria-describedby="newpass12" aria-required="true"> <br>
+		<span id="newpass12">acc-describedby content</span>
+	</td>
+	<td>Chrome:AccName=Label10 Label10, AccDescription=acc-describedby content<br>WATbeta shows aria-required=true and ID but not aria-describedby<mark>IE: AccName="Label10", AccDescription="", ARIAProperties: "describedby=newpass;"</mark>, WAFbeta does not show aria-required true, shows aria-describedby and where IDs are</td>
+	<td>Chrome and IE: AccName=Label10, AccDescription=acc-describedby content
+	</td>
+	<td>No property labels provided; difficult to analyze<br>Chrome:Label10 and acc-describedby content<br>IE: Label10 and describedby=ID (not the content)
+	</td>
+	<td>Chrome and IE: Aria-describedby ID marked (no label info), onhover: accName:"Label10" accDescription: acc-describedby content<br> <mark>"In IE, [ARIA]" markup of ID's on page is in black font so it's hard to find and disappears on mouseover on form. In Chrome, markup is green and bolded. In both, markup disappears when mouseover on form.</mark>
+	</td>
+</tr>
+<tr>
+    <td>13. aria-labelledby and aria-describedby; aria-required=true <br>
+		<p id="label13">Label13</p>
+		<input type="text" name="resetpass13" id="resetpass13" aria-labelledby="label13" aria-describedby="newpass13" aria-required="true"> <br>
+		<span id="newpass13">acc-describedby content</span>
+	</td>
+	<td>Chrome:AccName=Label10 Label10, AccDescription=acc-describedby content<br>WATbeta shows aria-required=true and ID but not aria-describedby<mark>IE: AccName="Label10", AccDescription="", ARIAProperties: "describedby=newpass;"</mark>, WAFbeta does not show aria-required true, shows aria-describedby and where IDs are</td>
+	<td>Chrome and IE: AccName=Label10, AccDescription=acc-describedby content
+	</td>
+	<td>No property labels provided; difficult to analyze<br>Chrome:Label10 and acc-describedby content<br>IE: Label10 and describedby=ID (not the content)
+	</td>
+	<td>Chrome and IE: Aria-describedby ID marked (no label info), onhover: accName:"Label10" accDescription: acc-describedby content<br> <mark>"In IE, [ARIA]" markup of ID's on page is in black font so it's hard to find and disappears on mouseover on form. In Chrome, markup is green and bolded. In both, markup disappears when mouseover on form.</mark>
+	</td>
+</tr>
+<tr>
+    <td>14. aria-labelledby and aria-describedby; title <br>
+		<p id="label14">Label14</p>
+		<input type="text" id="resetpass14" aria-labelledby="label14" aria-describedby="newpass14" title="form14"> <br>
+		<span id="newpass14">acc-describedby content</span>
+	</td>
+	<td>a</td>
+	<td>Chrome and IE: AccName=Label10, AccDescription=acc-describedby content
+	</td>
+	<td>c
+	</td>
+	<td>d</mark>
+	</td>
+</tr>
+<tr>
+    <td>15. aria-labelledby and title <br>
+		<p id="label15">Label15</p>
+		<input type="text" id="resetpass14" aria-labelledby="label15" title="form15">
+		
+	</td>
+	<td>a</td>
+	<td>Chrome and IE: AccName=Label10, AccDescription=title content
+	</td>
+	<td>c
+	</td>
+	<td>d</mark>
+	</td>
+</tr>
+</table>
+</form>
+<h3>Forms observations</h3>
+<ul>
+<li>AccName precedence: aria-labelledby then label for/id then title</li>
+<ul><li><mark>Inspect and AViewer do not calculate AccName correctly</mark></li></ul>
+<li>When title is provided with either aria-labelledby or label for/id, AccDescription=title.</li>
+<li><mark>**A-B (Gunderson) favelet requires mouse hover to reveal properites of form and the info disappears too quickly.</mark></li>
+<li>March 2016: In IE, A-B (Gunderson) favelets didn't markup local file content. (This may have only occurred on home PC.) <mark>June 9, 2016 update: works in IE and Chrome the same except for fieldset/legend.</mark></li>
+<li><mark>**Inspect and AViewer show the same info, but AViewer is more difficult to use.</mark> 
+	<ul>
+		<li>In IE, aria attributes are displayed separately instead of included in AccName or AccDescription. In Chrome, they are in AccName. </li>
+		<li>Tester must know to look for IAccessible2 when MSAA doesn't show full properties of the form. </li>
+		<li>The balloon info updates as it follows the cursor in IE; balloon must be manually toggled in Chrome to update.</li>
+	</ul>
+<li><mark>**AViewer doesn't show fieldset/legend info</mark></li>
+<li>Visual Aria works in both IE and Chrome</li>
+	<ul>
+		<li>Only marks up ARIA form fields on page (tool does not help tester find the non-ARIA forms)
+		<li>Does not show fieldset/legend/label/ID properties on forms; otherwise shows same as A-B (Gunderson)</li>
+		<li>Hard to use in IE since markup is in black text and hard to find</li>
+	</ul>
+</ul>
+
+<h2>Data Tables</h2>
+<h3>Data table headers with ARIA only</h3>
+<table border="1">	
+	<tr>
+		<th id="name1">Name</th>
+		<th id="officenum">Office Number</th>
+		<th id="phonelabel">Phone</th>
+	</tr>
+	<tr>
+		<th id="cyndi" aria-labelledby="name1">Cyndi</th>
+		<td aria-labelledby="cyndi officenum">10</td>
+		<td aria-labelledby="cyndi phonelabel">11</td>
+	</tr>
+	
+	<tr>
+		<th id="jared" aria-labelledby="name1">Jared</th>
+		<td aria-labelledby="jared officenum">20</td>
+		<td aria-labelledby="jared phonelabel">21</td>
+	</tr>
+	<tr>
+		<th id="jon" aria-labelledby="name1">Jonathan</th>
+		<td aria-labelledby="jon officenum">30</td>
+		<td aria-labelledby="jon phonelabel">31</td>
+	</tr>
+	
+</table>
+<h4>Data Table observations</h4>
+<ul>
+<li>Data table cells, no difference in using aria-labelledby technique when compared to use of headers and id technique. JAWS read the cell data and headers the same in both techniques.</li>
+<li>Use of the original TT ARIA favelet - IE: reveals only the labelledby assigned ID for the cells but no markup on the ID's so tester doesn't know if it's correct. Use WAT - Show Data tables first to mark ID's, then use ARIA favelet. Chrome: favelet markup adds cells and is confusing for tester. ID is shown on some, but not for all cells. If ID is shown, it is shown multiple times (once for each time it's called) and can be confusing.</li>
+<li><mark>No tool yet for coded aria data tables. Since there isn't an obvious reason to use ARIA on data tables, recommend using HTML techniques. </mark></li>
+</ul>
+<h3>Multiple form labels in a table with ARIA only</h3>
+<p> <a href="http://webaim.org/techniques/forms/advanced" target="_blank">source</a> </p>
+
+<table border="1">	
+	<tr>
+		<th scope="col">Name</th>
+		<th id="officenum" scope="col">Office Number</th>
+		<th id="phonelabel" scope="col">Phone</th>
+	</tr>
+	<tr>
+		<th id="cyndi" scope="col">Cyndi</th>
+		<td><input type="text" size="4" name="office1" aria-labelledby="cyndi officenum"></td>
+		<td><input type="text" size="12" name="phone1" aria-labelledby="cyndi phonelabel"></td>
+	</tr>
+	
+	<tr>
+		<th id="jared" scope="col">Jared</th>
+		<td><input type="text" size="4" name="office2" aria-labelledby="jared officenum"></td>
+		<td><input type="text" size="12" name="phone2" aria-labelledby="jared phonelabel"></td>
+	</tr>
+	<tr>
+		<th id="jon" scope="col">Jonathan</th>
+		<td><input type="text" size="4" name="office3" aria-labelledby="jon officenum"></td>
+		<td><input type="text" size="12" name="phone3" aria-labelledby="jon phonelabel"></td>
+	</tr>
+	
+</table>
+<h4>Forms in Table observations</h4>
+<ul>
+<li>Inspect in IE and Chrome shows the accname for forms correctly (accname= "Cyndi office number" and AriaProperties="labelledby=cyndi phonelabel;"
+). But tester must do further code check to determine if ID's were assigned correctly. </li>
+<li>All tools worked on the form elements, showing the value of accname correctly. </li>
+</ul>
+
+<h2>Images with alt, title, aria-describedby</h2>
+<table border="1">
+<tr>
+	<th scope="col">Image</th>
+	<th scope="col">MS Inspect</th>
+	<th scope="col">A-B (Gunderson) Images favelet</th>
+	<th scope="col">AViewer</th>
+	<th scope="col">Visual ARIA</th>
+</tr>
+<tr>
+	<td>1. With alt only;
+		<img src="dud.png" alt="alt">
+	</td>
+	<td>No ARIA. Use WAT</td>
+	<td>Chrome and IE:<br> AccName=alt
+	</td>
+	<td>Chrome and IE:<br> AccName= alt
+	</td>
+	<td>Chrome and IE: bookmarklet does not mark up this image
+	</td>
+</tr>
+<tr>
+	<td>2. With title only;
+		<img src="dud.png" title="title">
+	</td>
+	<td>No ARIA. Use WAT</td>
+	<td>Chrome and IE: AccName=title
+	</td>
+	<td>Chrome: AccName=title<br><mark>IE: AccName=title, AccDescription=title</mark>
+	</td>
+	<td>Chrome and IE: bookmarklet does not mark up this image
+	</td>
+</tr>
+<tr>
+	<td>3. With alt and title only;
+		<img src="dud.png" alt="alt" title="title">
+	</td>
+	<td>No ARIA. Use WAT</td>
+	<td>Chrome and IE: AccName=alt, AccDescription=title
+	</td>
+	<td>Chrome and IE: AccName=alt, AccDescription=title
+	</td>
+	<td>Chrome and IE: bookmarklet does not mark up this image
+	</td>
+</tr>
+<tr>
+	<td>4. With aria-describedby only;
+		<img src="ladymacbeth.jpg" aria-describedby="p3">
+		<p id="p3">P3: This painting dates back to 1730 and is oil on canvas. It was created by 
+		Jean-Guy Millome, and represents ...</p>
+	</td>
+	<td>Chrome: no accname, accDescription=text of id in aria-describedby<br><mark>IE: no aria info or name info</mark></td>
+	<td>Chrome and IE:AccName=none, AccDescription=text of id in aria-describedby
+	</td>
+	<td>Chrome: AccName=none, AccDescription= text of id in aria-describedby<br><mark>**IE: MSAA AccName=none, AccDesc=none; ARIA attributes and UIAutomation CurrentAriaProperties says only describedby=p1, but not text of p1</mark>
+	</td>
+	<td>Chrome and IE: markup is only <mark>[ARIA] aria-describedby=p3</mark>. In IE, markup is in black font so it's hard to find
+	</td>
+</tr>
+
+<tr>
+	<td>5. With alt and aria-describedby;
+		<img src="ladymacbeth.jpg" alt="alt" aria-describedby="p5">
+		<p id="p5">P5: This painting dates back to 1730 and is oil on canvas. It was created by 
+		Jean-Guy Millome, and represents ...</p>
+	</td>
+	<td>Chrome:AccName=alt, AccDescription=text of id in aria-describedby<br><mark>IE: AccName=alt, no aria info</mark> </td>
+	<td>Chrome and IE:AccName=alt, AccDescription=text of id in aria-describedby
+	</td>
+	<td>Chrome: AccName=alt, AccDescription=text of id in aria-describedby<br><mark>**IE: AccName=alt, AccDescription=none; ARIA attributes and UIAutomation CurrentAriaProperties says only describedby=p1, but not value of p1</mark>
+	</td>
+	<td>Chrome and IE: markup is only <mark>[ARIA] aria-describedby=p5</mark>. In IE, markup is in black font so it's hard to find
+	</td>
+
+</tr>
+<tr>
+	<td>6. With alt and title and aria-describedby;
+		<img src="ladymacbeth.jpg" alt="alt" aria-describedby="p6" title="title">
+		<p id="p6">P6: This painting dates back to 1730 and is oil on canvas. It was created by 
+		Jean-Guy Millome, and represents ...</p>
+	</td>
+	<td>Chrome: AccName=alt, AccDescription=text of id in aria-describedby; title is ignored<br><mark>IE: accName=alt, accDesc=title, no aria info</mark> </td>
+	<td>Chrome and IE:AccName=alt, AccDescription=text of id in aria-describedby; title is ignored
+	</td>
+	<td>Chrome: AccName=alt, AccDescription=text of id in aria-describedby (title is ignored)<br><mark>**IE: AccName=alt, AccDescription=title; ARIA attributes and UIAutomation CurrentAriaProperties says only describedby=p1, but not value of p1</mark>
+	</td>
+	<td>Chrome and IE: markup is only <mark>[ARIA] aria-describedby=p6</mark>. In IE, markup is in black font so it's hard to find
+	</td>
+
+</tr>
+<tr>
+	<td>7. With title and aria-describedby;
+		<img src="ladymacbeth.jpg" aria-describedby="p7" title="title">
+		<p id="p7">P7: This painting dates back to 1730 and is oil on canvas. It was created by 
+		Jean-Guy Millome, and represents ...</p>
+	</td>
+	<td>Chrome: AccName=title, AccDescription=text of id in aria-describedby<br><mark>IE: accname=title, no aria info</mark></td>
+	<td>Chrome and IE:AccName=title, AccDescription=text of id in aria-describedby
+	</td>
+	<td>Chrome: AccName=title, AccDescription=text of id in aria-describedby<br><mark>**IE: AccName=title,AccDescription=title,ARIA attributes and UIAutomation CurrentAriaProperties says only describedby=p1, but not value of p1</mark>
+	</td>
+	<td>Chrome and IE: markup is only <mark>[ARIA] aria-describedby=p7</mark>. In IE, markup is in black font so it's hard to find
+	</td>
+</tr>
+<tr>
+	<td>8. With alt and aria-label and aria-describedby;
+		<img src="ladymacbeth.jpg" alt="alt" aria-label="aria label" aria-describedby="p8">
+		<p id="p8">P8: This painting dates back to 1730 and is oil on canvas. It was created by 
+		Jean-Guy Millome, and represents ...</p>
+	</td>
+	<td>Chrome: AccName=content of aria-label, AccDescription=text of id in aria-describedby. ALT is ignored<br><mark>IE: accName=content of aria-label, alt and aria-describedby ignored</mark></td>
+	<td>Chrome and IE:AccName=content of aria-label, AccDescription=text of id in aria-describedby<br>ALT is ignored
+	</td>
+	<td>Chrome: AccName=alt, AccDescription=text of id in aria-describedby<br><mark>**IE: alt, painting from AccDescription=none; ARIA attributes and UIAutomation CurrentAriaProperties says only describedby=p1, but not value of p1</mark>
+	</td>
+	<td>Chrome and IE: No alt info, markup is <mark>[ARIA] aria-label=painting from France aria-describedby=p8</mark>. In IE, markup is in black font so it's hard to find
+	</td>
+</tr>
+<tr>
+	<td>9. With alt and aria-labelledby and aria-describedby;
+		<img src="ladymacbeth.jpg" alt="alt" aria-labelledby="p10" aria-describedby="p9">
+		<p id="p9">P9: This painting dates back to 1730 and is oil on canvas. It was created by 
+		Jean-Guy Millome, and represents ...</p>
+		<p id="p10">P10: Painting from France</p>
+	</td>
+	<td>Chrome: AccName=text of ID of aria-labelledby, AccDescription=text of id in aria-describedby. ALT is ignored<br><mark>IE: accName=alt, no aria info </mark></td>
+	<td>Chrome and IE:AccName=text of ID of aria-labelledby, AccDescription=text of id in aria-describedby<br>ALT is ignored
+	</td>
+	<td>Chrome: AccName=alt, AccDescription=text of id in aria-describedby<br><mark>**IE: AccName=alt, AccDescription=none; ARIA attributes and UIAutomation CurrentAriaProperties says only describedby=p1, but not value of p1</mark>
+	</td>
+	<td>Chrome and IE: No alt info, markup is <mark>[ARIA] aria-labelledby=p10 aria-describedby=p9</mark>. In IE, markup is in black font so it's hard to find
+	</td>
+</tr>
+<tr>
+	<td>10. With aria-label and aria-labelledby and aria-describedby;
+		<img src="ladymacbeth.jpg" aria-label="aria label" aria-labelledby="p10" aria-describedby="p9">
+		<p id="p9">P9: This painting dates back to 1730 and is oil on canvas. It was created by 
+		Jean-Guy Millome, and represents ...</p>
+		<p id="p10">P10: Painting from France</p>
+	</td>
+	<td>Chrome: AccName=text of ID of aria-labelledby, AccDescription=text of id in aria-describedby. aria-label is ignored<br><mark>IE: accName=content of aria-label, other aria info ignored</mark> </td>
+	<td>Chrome and IE:AccName=text of ID of aria-labelledby, AccDescription=text of id in aria-describedby. aria-label is ignored
+	</td>
+	<td><mark>Chrome and IE: all ARIA listed but not as accname or accdesc: aria-label and its content,aria-describedby and its ID, aria-labelledby and its ID</mark>
+	</td>
+	<td>Chrome and IE: markup is <mark>[ARIA] aria-labelledby=p10 aria-describedby=p9</mark>.aria-label is ignored. In IE, markup is in black font so it's hard to find
+	</td>
+</tr>
+</table>
+<h3>Images Observations</h3>
+<ul>
+<li>AccName precendence: aria-labelledby, aria-label, ALT then title. When both aria-describedby and aria-label provided, aria-label is ignored.</li>
+<li>When both ALT and title provided, AccName=ALT and AccDescription=title.</li>
+<li>AccDescription precedence if alt is present: aria-describedby then title. If only both of these are provided (see 7), title becomes accname. Otherwise, accname precedence and title will be ignored.</li>
+<li><mark>**A-B (Gunderson) favelet requires mouse hover to reveal properites of image.</mark></li>
+<li>~March 2016: In IE, A-B (Gunderson) images favelet only marked the first image in above table. <mark>June 9, 2016 update: A-B works in IE the same as Chrome. No action taken from user side; fix must've been made elsewhere.</mark></li>
+<li><mark>**AViewer is harder to read in IE when aria is present in IE. MSAA shows the accName, but accdescription is blank and tester must search the other sections for aria.</mark></li>
+<li>AViewer in Chrome only shows one set of info (MSAA or IA2 unknown) and displays the text from the referenced aria ID; in IE it shows the aria ID referenced (but not the text of the reference).</li>
+<li><mark>Visual ARIA only marks up ARIA and doesn't provide the AccName or AccDescription, only the ARIA ID.</mark></li>
+</ul>
+<h2>Data Table association with ARIA</h2>
+
+
+
+<h2>Tool Configuration</h2>
+<h3>A-B Gunderson favelets - none</h3>
+
+<h3>AViewer Settings</h3>
+<table border="1">
+<tr>
+	<th>MSAA</th>
+	<th>IAccessible2</th>
+	<th>UIAutomation</th>
+</tr>
+<tr>
+	<td>accName<br>accRole<br>accState<br>accDescription<br>accValue</td>
+	<td>Name<br>Role<br>States<br>Description<br>Object Attributes<br>Value</td>
+	<td>CurrentAriaProperties<br>CurrentAriaRole<br>CurrentHelpText<br>CurrentIsRequiredForForm<br>CurrentItemStatus<br>CurrentItemType<br>CurrentName<br>CurrentDescribedBy<br>CurrentLabeledBy</td>
+</tr>
+</table>
+
+</body>
+
+</html>

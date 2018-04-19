@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>ANDI and Gunderson Accessible Name Tests</title>
+<style type="text/css">
+/***********General*************************/
+body  {
+	height: 100%;
+	font-size: 14px;
+	font-family: Ariel, Helvetica, sans-serif;
+	line-height: 1.4em;
+	margin:0 auto;
+	width:90%;
+	color:#303030;
+	word-wrap: break-word;
+}
+h1, h2, h3, h4, h5, h6 {font-family: Arial, sans-serif;}
+
+h1 {
+	font-size:2em;
+	font-weight:600;
+	color:#004380;
+}
+
+h2 {
+	font-size: 1.8em;
+	font-weight: 600;
+	margin-top:1.3em;
+	color:#004380;
+}
+
+h3 {
+	font-size:1.2em;
+	font-weight: 700;
+	margin-top:1.5em;
+	margin-bottom: 0;
+	color: #004080;
+}
+h4 {
+	font-size:1.1em;
+	font-weight: 600;
+	margin-top:1.5em;
+	margin-bottom: 0;
+	color: #004080;
+}
+</style>
+</head>
+
+<body>
+<h1>Accessible Name and Accessible Description Tools Comparison</h1>
+<h2>Forms with label, for, title, aria-labelledby combinations</h2>
+<form>
+<table border="1">
+<tr>
+	<th scope=col>Form</th>
+	<th scope=col>ANDI <br>(mini mode)</th>
+	<th scope=col>A-B (Gunderson) Forms favelet</th>
+</tr>
+<tr>
+	<td>1. <Label for="Question1">Label1</label><input type="text" title="title1"><br>
+		<pre><code>&lt;Label for="Question1"&gt;Label1&lt;/label&gt;<br>&lt;input type="text" title="title1"&gt;</code></pre>	</td>
+	<td><br>Chrome and IE: ANDI Output=title1</td>
+	<td> Chrome:AccName=title1; Role: textbox	</td>
+</tr>
+<tr>
+	<td>2. <Label for="Question2">LabelID2</label><input type="text" title="title2" id="Question2"><br><pre><code>&lt;Label for="Question2"&gt;LabelID2&lt;/label&gt;<br>&lt;input type="text" title="title2" id="Question2"&gt;</code></pre></td>
+	<td>Chrome and IE: ANDI Output: LabelID2 title2 </td>
+	<td>Chrome: AccName= LabelID2, AccDescription=title2; Role: textbox	</td>
+</tr>
+<tr>
+	<td>3a. Label (INPUT not enclosed), no id, title; <br>
+		<Label>Question3a</label><input type="text" title="title3"><br>
+		<pre><code>&lt;Label&gt;Question3a&lt;/label&gt;<br>&lt;input type="text" title="title3"&gt;</code></pre></td>
+	<td>Chrome and IE: ANDI Output=title3 </td>
+	<td>Chrome and IE: AccName=title3; Role: textbox		</td>
+</tr>
+<tr>
+	<td>3b. Enclosed form Label implicit <br>
+		<Label>Label3b<input type="text"></label>
+		<pre><code>&lt;label&gt;Label3b&lt;input type="text"&gt;&lt;/label&gt;</code></pre></td>
+	<td>Chrome and IE: ANDI Output: Label3b </td>
+	<td>Chrome: AccName=Label3b; Role: textbox	</td>
+</tr>
+<tr>
+	<td>4. Fieldset, Legend, label for, id; <br>
+		<fieldset> 
+			<legend>Legend4</legend> 
+      			<label for="name4">LabelID4</label> 
+				<input type="text" id="name4" size="30"/> 
+		</fieldset><br>
+		<pre><code>
+&lt;fieldset&gt;
+	&lt;legend&gt;Legend&lt;/legend&gt;
+		&lt;label for="name4"&gt;LabelID4&lt;/label&gt;
+		&lt;input type="text" id="name4" size="30"/&gt;   		
+&lt;/fieldset&gt;
+		</code></pre>
+	</td>
+	<td>Chrome and IE: ANDI Output: Legend4 LabelID4</td>
+	<td>Chrome: GroupLabel=Legend4, AccName=LabelID4; Role: textbox	</td>
+	
+</tr>
+<tr>
+	<td>5. Fieldset, Legend, label for, id AND title; <br>
+		<fieldset> 
+			<legend>Legend5</legend> 
+				<label for="name5">LabelID5</label> 
+				<input type="text" id="name5" size="30"title="title5"/> 
+		</fieldset><br>
+		<pre><code>
+&lt;fieldset&gt; 
+	&lt;legend&gt;Legend5&lt;/legend&gt;     
+		&lt;label for="name5"&gt;LabelID5&lt;/label&gt; 
+		&lt;input type="text" id="name5" size="30"title="title5"/&gt; 
+&lt;/fieldset&gt;
+		</code></pre>
+	</td>
+	<td>Chrome and IE: ANDI Output:Legend5 LabelID5 title5 !Do not combine components: [legend:title] </td>
+	<td> Chrome: GroupLabel=Legend5, AccName=LabelID5, AccDescription=title5; Role: textbox	
+	</td>
+	
+</tr>
+<tr>
+	<td>6. aria-labelledby refers to 2 IDs;<br>
+			<div id="ba6">Label6b</div> 
+			<div id="zip6">Label6a</div> 
+			<input type="text" aria-labelledby="zip6 ba6" size="12"/> <br>   
+			<pre><code>&lt;div id="ba6"&gt;Label6b&lt;/div&gt; <br>&lt;div id="zip6"&gt;Label6a&lt;/div&gt; <br>&lt;input type="text" aria-labelledby="zip6 ba6" size="12"/&gt;  </code></pre>
+	</td>
+	<td>Chrome and IE: ANDI Output: Label6a Label6b </td>
+	<td>Chrome: AccName= Label6a Label6b; Role: textbox	
+	</td>
+	
+
+</tr>
+<tr>
+	<td>7. label for/id and aria-labelledby refers to 2 IDs;<br>
+			<div id="ba7">Label7b</div> 
+			<div id="zip7">Label7a</div> <label for="label">LabelID7</label>
+        		<input type="text" id="label" aria-labelledby="zip7 ba7" size="12"/>     
+<pre><code>
+&lt;div id="ba7"&gt;Label7b&lt;/div&gt; 
+&lt;div id="zip7"&gt;Label7a&lt;/div&gt; &lt;label for="label"&gt;LabelID7&lt;/label&gt;
+&lt;input type="text" id="label" aria-labelledby="zip7 ba7" size="12"/&gt;
+</code></pre>				
+	</td>
+	<td>Chrome: ANDI Output: Label7a Label7b</td>
+	<td>Chrome: AccName=Label7a Label7b; Role: textbox	
+	</td>
+	
+</tr>
+<tr>
+	<td>8. aria-labelledby refers to 2 IDs AND title;<br>
+		       	<div class="legend" id="ba8">Label8b</div> 
+	        	<div id="zip8">Label8a</div> 
+				<input type="text" aria-labelledby="zip8 ba8" size="12" title="title8"/>          
+<pre><code>
+&lt;div class="legend" id="ba8"&gt;Label8b&lt;/div&gt; 
+&lt;div id="zip8"&gt;Label8a&lt;/div&gt; 
+&lt;input type="text" aria-labelledby="zip8 ba8" size="12" title="title8"/&gt;
+</code></pre>
+	</td>
+	<td>Chrome and IE: ANDI Output: Label8a Label8b title8 </td>
+	<td>Chrome: AccName=Label8a Label8b, AccDescription=title8; Role: textbox	
+	</td>
+	
+</tr>
+<tr>
+    <td>9. Label and aria-describedby; <br>
+		<label for="resetpass9">LabelID9</label>
+		<input type="text" id="resetpass9" aria-describedby="newpass9"> <br>
+		<span id="newpass9">acc-describedby content9</span>
+<pre><content>
+&lt;label for="resetpass9"&gt;LabelID9&lt;/label&gt;
+&lt;input type="text" id="resetpass9" aria-describedby="newpass9"&gt; &lt;br&gt;
+&lt;span id="newpass9"&gt;acc-describedby content9&lt;/span&gt;
+</content></pre>
+	</td>
+	<td>Chrome and IE: ANDI Output: LabelID9 aria-describedby content9</td>
+	<td>Chrome: AccName=LabelID9, AccDescription=acc-describedby content9; Role: textbox	
+	</td>
+	
+</tr>
+<tr>
+    <td>10. Label and aria-required; <br>
+		<label for="resetpass10">LabelID10* </label>
+		<input type="text" id="resetpass10" aria-required="true">
+		
+<pre><code>
+&lt;label for="resetpass10"&gt;LabelID10* &lt;/label&gt;
+&lt;input type="text" id="resetpass10" aria-required="true"&gt;
+</code></pre>
+	</td>
+	<td>Chrome and IE: ANDI Output: LabelID10* <mark>required</mark></td>
+	<!-- "aria-required" is not an accessible name or accessible description. -->
+	<td>Chrome: AccName=Label10*, <mark>aria-required is not revealed, WAFbeta needed to show aria-required true</mark>; Role: textbox	
+	</td>
+	
+</tr>
+<tr>
+	<td>11. aria-labelledby refers to 2 IDs; aria-required=true<br>
+			<div id="ba11">Label11b</div> 
+			<div id="zip11">Label11a</div> 
+			<input type="text" aria-labelledby="zip11 ba11" aria-required="true" size="12"/>*         
+<pre><code>
+&lt;div id="ba11">Label11b&lt;/div&gt;
+&lt;div id="zip11">Label11a&lt;/div&gt; 
+&lt;input type="text" aria-labelledby="zip11 ba11" <br> aria-required="true" size="12"/&gt;*
+</code></pre>		
+	</td>
+	<td>Chrome and IE: ANDI Output: Label11a Label11b <mark>required</mark></td>
+	<td>Chrome: AccName= Label11a Label11b, <mark>aria-required is not revealed, WAFbeta needed to show aria-required true</mark>; Role: textbox	
+	</td>
+	
+</tr>
+<tr>
+    <td>12. Label and aria-describedby; aria-required=true <br>
+		<label for="resetpass12">LabelID12*</label>
+		<input type="text" id="resetpass12" aria-describedby="newpass12" aria-required="true"> <br>
+		<span id="newpass12">acc-describedby content12</span>
+<pre><code>
+&lt;label for="resetpass12">LabelID12&lt;/label&gt;
+&lt;input type="text" id="resetpass12" aria-describedby="newpass12" <br> aria-required="true"&gt; &lt;br&gt;
+&lt;span id="newpass12">acc-describedby content12&lt;/span&gt;
+</code></pre>
+	</td>
+	<td>Chrome and IE: ANDI Output: LabelID12* acc-describedby content12 <mark>required</mark></td>
+	<td>Chrome: AccName=LabelID12*, AccDescription=acc-describedby content12 <mark>aria-required is not revealed, WAFbeta needed to show aria-required true</mark>; Role: textbox	
+	</td>
+	
+</tr>
+<tr>
+    <td>13. aria-labelledby and aria-describedby; aria-required=true <br>
+		<p id="label13">Label13</p>
+		<input type="text" id="resetpass13" aria-labelledby="label13" aria-describedby="newpass13" aria-required="true"><br>
+		<span id="newpass13">acc-describedby content13</span>
+<pre><code>
+&lt;p id="label13"&gt;Label13&lt;/p&gt;
+&lt;input type="text" id="resetpass13" aria-labelledby="label13" <br> aria-describedby="newpass13" aria-required="true"&gt;
+&lt;span id="newpass13"&gt;acc-describedby content13&lt;/span&gt;
+</code></pre>
+	</td>
+	<td>Chrome and IE: ANDI Output: Label13 acc-describedby content13 <mark>required</mark></td>
+	<td>Chrome: AccName=Label13, AccDescription=acc-describedby content13 <mark>aria-required is not revealed, WAFbeta needed to show aria-required true</mark>; Role: textbox	
+	</td>
+	
+</tr>
+<tr>
+    <td>14. aria-labelledby and aria-describedby; title <br>
+		<p id="label14">Label14</p>
+		<input type="text" aria-labelledby="label14" aria-describedby="newpass14" title="title14"> <br>
+		<span id="newpass14">acc-describedby content14</span>
+<pre><code>
+&lt;p id="label14"&gt;Label14&lt;/p&gt;
+&lt;input type="text" aria-labelledby="label14" <br> aria-describedby="newpass14" title="title14"&gt;
+&lt;span id="newpass14"&gt;acc-describedby content14&lt;/span&gt;
+</code></pre>
+	</td>
+	<td>Chrome and IE: ANDI Output: Label14 acc-describedby content14 !Do not combine components: [aria-describedby:title]</td>
+	<td>Chrome: AccName=Label14, AccDescription=acc-describedby content14; Role: textbox	
+	</td>
+	
+</tr>
+<tr>
+    <td>15. aria-labelledby and title <br>
+		<p id="label15">Label15</p>
+		<input type="text" aria-labelledby="label15" title="title15">
+<pre><code>
+&lt;p id="label15"&gt;Label15&lt;/p&gt;
+&lt;input type="text" aria-labelledby="label15" title="title15"&gt;
+</code></pre>		
+	</td>
+	<td>Chrome and IE: ANDI Output: Label15 title15</td>
+	<td>Chrome: AccName=Label15, AccDescription=title15; Role: textbox	
+	</td>
+	
+</tr>
+<tr>
+	<td>16. ARIA grouping role<br>
+	<div role="group" aria-labelledby="shipping_head">
+		<div id="shipping_head">Shipping Address:</div>
+		<div>
+			<span id="shipping_name">Name:</span><br>
+			<input type="text" aria-labelledby="shipping_name">
+		</div>
+	</div>
+	<div role="group" aria-labelledby="billing_head">
+		<div id="billing_head">Billing Address:</div>
+		<div>
+			<span id="billing_name">Name:</span><br>
+			<input type="text" aria-labelledby="billing_name">
+		</div>
+	</div>
+<pre><code>
+&lt;div role="group" aria-labelledby="shipping_head">
+	&lt;div id="shipping_head"&gt;Shipping Address:&lt;/div&gt;
+	&lt;div&gt;
+		&lt;span id="shipping_name"&gt;Name:&lt;/span&gt;&lt;br&gt;
+		&lt;input type="text" aria-labelledby="shipping_name"&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;div role="group" aria-labelledby="billing_head"&gt;
+	&lt;div id="billing_head"&gt;Billing Address:&lt;/div&gt;
+	&lt;div&gt;
+		&lt;span id="billing_name"&gt;Name:&lt;/span&gt;&lt;br&gt;
+		&lt;input type="text" aria-labelledby="billing_name"&gt;
+	&lt;/div>
+&lt;/div&gt;
+</code></pre>
+	<p><mark>Neither tool associated the form with aria role=group aria-labelledby </mark> here or on this <a href="https://www.w3.org/WAI/WCAG20/Techniques/working-examples/ARIA17/grouping-roles-example.html" target="_blank">W3 grouping roles test page</a></p>
+	</td>
+	<td>Chrome and IE: ANDI OUTPUT: Name:</td>
+	<td>Chrome: AccName: Name</td>
+</tr>
+<tr>
+	<td>17. Input type=radio<br>
+	<fieldset>
+		<legend>Legend16</legend>
+			<input id="overnight" type="radio" name="shipping" value="overnight">
+				<label for="overnight">LabelID1</label><br>
+			<input id="twoday" type="radio" name="shipping" value="twoday">
+				<label for="twoday">LabelID2</label><br>
+			<input id="ground" type="radio" name="shipping" value="ground">
+				<label for="ground">LabelID3</label>
+	</fieldset>
+		<pre><code>
+&lt;fieldset>
+	&lt;legend&gt;Legend16&lt;/legend&gt;
+	&lt;input id="overnight" type="radio"&gt;
+			&lt;label for="overnight"&gt;LabelID1&lt;/label&gt;&lt;br&gt;
+	&lt;input id="twoday" type="radio"&gt;
+			&lt;label for="twoday"&gt;LabelID2&lt;/label&gt;&lt;br&gt;
+	&lt;input id="ground" type="radio"&gt;
+			&lt;label for="ground"&gt;LabelID3&lt;/label&gt;
+&lt;/fieldset&gt;
+		</code></pre>
+	</td>
+	<td>Chrome and IE: ANDI Output: Legend LabelID(1-3)
+	</td>
+	<td>Chrome: Group label: Legend, AccName: LabelID(1-3); Role: radio
+	</td>
+</tr>
+<tr>
+	<td>18. Select<br>
+	<label for="favcity">LabelID17</label>
+	<select id="favcity" name="select">
+		<option value="1">Option1</option>
+		<option value="2">Option2</option>
+		<option value="3">Option3</option>
+	</select>
+<pre><code>
+&lt;label for="favcity"&gt;LabelID17&lt;/label&gt;
+&lt;select id="favcity" name="select"&gt;
+	&lt;option value="1"&gt;Option1&lt;/option&gt;
+	&lt;option value="2"&gt;Option2&lt;/option&gt;
+	&lt;option value="3"&gt;Option3&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+	</td>
+	<td>Chrome and IE: ANDI Output: LabelID17
+	</td>
+	<td>Chrome: AccName: LabelID17; role: listbox
+	</td>
+</tr>
+<tr>
+	<td>19. Button with image alt</br>
+	<button>Delete <img src="pict.jpg" alt="Profile" /> Bryan Garaventa</button>
+<pre><code>
+&lt;button&gt;Delete &lt;img src="pict.jpg" alt="Profile" /&gt; Bryan Garaventa&lt;/button&gt;
+</code></pre>
+	</td>
+	<td>Chrome: ANDI Output: Delete Bryan Garaventa Profile <mark>(order different from visual)</mark>
+	</td>
+	<td>Chrome: AccName: Delete Profile Bryan Garaventa; Role: button
+	</td>
+</tr>
+<tr>
+	<td>20. Button with aria-label<br>
+	<button aria-label="Remove all trace of Bryan Garaventa from the face of the Earth" >
+	Delete <span class="profile" aria-label="all records of Bryan Garaventa" ><img src="pict.jpg" alt="Profile" />
+    Bryan Garaventa  </span>
+	</button>
+<pre><code>
+&lt;button aria-label="Remove all trace of Bryan Garaventa from the face of the Earth" &gt;Delete
+&lt;span class="profile" aria-label="all records of Bryan Garaventa" &gt;
+	&lt;img src="pict.jpg" alt="Profile" /&gt;Bryan Garaventa  
+&lt;/span&gt;
+</code></pre>
+	</td>
+	<td>Chrome and IE: ANDI Output: Remove all trace of Bryan Garaventa from the face of the Earth, !Do not combine components: [alt: aria-label], ?Subtree contains unused text.
+	</td>
+	<td>Chrome: AccName: Remove all trace of Bryan Garaventa from the face of the Earth; Role: button
+	</td>
+</tr>
+<tr>
+	<td>21. style=display:none<br>
+	<input aria-label="Country" aria-describedby="descId" type="text" />
+<div id="descId" style="display:none;" >
+  <span> Choose the country where you currently reside. </span>
+</div>
+<pre><code>
+&lt;input aria-label="Country" aria-describedby="descId" type="text" /&gt;
+&lt;div id="descId" style="display:none;" &gt;
+	&lt;span&gt; Choose the country where you currently reside. &lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+	</td>
+	<td>Chrome and IE: ANDI Output: Country Choose the country where you currently reside
+	</td>
+	<td>Chrome: AccName: Country, AccDesc: Choose the country where you currently reside; Role: textbox
+	</td>
+</tr>
+<tr>
+	<td>22. style=visibility:hidden on desc, <mark>AccDes should be ""</mark>.<br>
+	<input aria-label="Country" aria-describedby="descId" type="text" />
+		<div id="descId" style="visibility:hidden;" >
+		<span> Choose the country where you currently reside.  </span>
+		</div>
+<pre><code>
+&lt;input aria-label="Country" aria-describedby="descId" type="text" /&gt;
+&lt;div id="descId" style="visibility:hidden;" &gt;
+	&lt;span&gt; Choose the country where you currently reside.  &lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+	</td>
+	<td>Chrome and IE: ANDI Output: Country Choose the country where you currently reside
+	</td>
+	<td>Chrome: AccName: Country, AccDesc: Choose the country where you curently reside; Role: textbox
+	</td>
+</tr>
+<tr>
+	<td>23. Input placeholder attribute<br>
+	<input type="text" placeholder="First name"><br>
+<pre><code>
+&lt;input type="text" placeholder="First name"&gt; 
+</code></pre>
+<p>(<a href="https://www.levelaccess.com/how-the-w3c-text-alternative-computation-works/" target="_blank">Placeholder in text alternative computation.</a> HTML placeholder takes precedence over aria-placeholder when both are present and non-empty. Ref "placeholder" in <a href="http://www.w3.org/TR/html-aam-1.0/#html-attribute-state-and-property-mappings" target="_blank">Section 4.5 HTML Attribute chart</a>. Not sure if it means it's part of accessible name computation.) 
+	</td>
+	<td>Chrome and IE: <mark>ANDI Output: Text box has no accessible name, associated label, or title.</mark>
+	</td>
+	<td>Chrome: <mark>AccName: First name</mark>; Role: textbox
+	</td>
+</tr>
+<tr>
+	<td>24. Disabled field<br>
+	Last name: <input type="text" title="last name" disabled><br>
+	</td>
+	<td>Chrome and IE: ANDI Output: not available (disabled form not interactive)
+	</td>
+	<td>Chrome: AccName: last name; Role: textbox
+	</td>
+</tr>
+<tr>
+	<td>25 Read only field<br>
+	Country: <input type="text" title="country" value="Norway" readonly><br>
+	</td>
+	<td>Chrome and IE: ANDI Output: country readonly
+	</td>
+	<td>Chrome: AccName: country; Role: textbox
+	</td>
+</tr>
+<tr>
+	<td>26. role=presentation<br>
+	Country: <input type="text" title="country" value="Norway" role="presentation"><br>
+	</td>
+	<td>Chrome and IE: ANDI Output: country (latest version provides role=presentation)
+	</td>
+	<td>Chrome: AccName: country; Role: presentation
+	</td>
+</tr>
+<tr>
+	<td>27. input type=button with image and alt="boy"<br>
+	<input type="image" src="smallboy.jpg" alt="boy">
+	</td>
+	<td>Chrome and IE: ANDI output: boy (yellow alert) Empty component: value.
+	</td>
+	<td>Chrome: AccName=boy; Role: button (found using Forms tool, not Images)
+	</td>
+</tr>
+<tr>
+	<td>28. button tag with image and alt="boy"<br>
+	<button><img src="smallboy.jpg" alt="boy"></button>
+	</td>
+	<td>Chrome and IE: ANDI output: boy (yellow alert) Empty component: value.
+	</td>
+	<td>Chrome: AccName=boy; Role: button (found using Forms tool, not Images)
+	</td>
+</tr>
+<tr>
+	<td>1. With alt and role=presentation;<br>
+		<img src="smallboy.jpg" alt="alt" role="presentation">
+	</td>
+	<td>Chrome and IE: ANDI Output: img is not interactive; no info
+	</td>
+	<td>Chrome: Role: presentation <mark>accname removed bc of presentation role-good!</mark>
+	</td>
+</tr>
+<tr>
+	<td>1. With alt="";<br>
+		<img src="smallboy.jpg" alt="">
+	</td>
+	<td>Chrome and IE: ANDI Output: img is not interactive; no info
+	</td>
+	<td>Chrome: Role: presentation <mark>accname empty</mark>
+	</td>
+</tr>
+<tr>
+	<td>1. With alt="" and longdesc;<br>
+		<img src="smallboy.jpg" alt="" longdesc="#w3htmlExplained">
+		
+		<div id="w3htmlExplained"><p>long description of the image...</p></div>
+	</td>
+	<td>Chrome and IE: ANDI Output: shows longdesc reference but not the text referenced
+	</td>
+	<td>Chrome: Role: presentation <mark>accname=empty, no accdesc</mark>
+	</td>
+</tr>
+</table>
+</form>
+<h3>Forms notes and observations</h3>
+<ul>
+<li>ARIA-required="true"
+<ul><li>ANDI shows aria-required="true" as "required".</li>
+	<li>Gunderson does not show aria-required. Would have to use second tool, WAF ARIA, to reveal aria-required true.</li>
+	<li>Required is a state property in Firefox. Not mapped to accessible name.</li>
+	<li>Similar state property shown by ANDI: readonly</li>
+</ul>
+</li>
+<li>Gunderson's shows ROLE. ANDI does not.</li>
+<li>ANDI page shift
+<ul><li>IE, ANDI forces the page to scroll to top when activated and keyboard focus goes to top.</li> 
+	<li>Chrome, page and focus shift sometimes will happen. Sometimes the focus remains where it was before ANDI was activated </li>
+<li>** Would prefer no shift in content and no shift in focus when tool is activated.</li></ul>
+</li>
+<li>ANDI effect on visual page
+<ul><li>Chrome: Right side of content is cut off.</li>
+	<li>Chrome: Horizontal and vertical scroll bars were removed from the the page. Page up/down keys also don't work until focus is put in the page.</li>
+	<li>IE11: horizontal scroll bar removed. Vertical scroll bars remain.</li>
+</ul>
+</li>
+<li>Gunderson's bookmarklet:
+<ul><li>Info is only revealed by mouseover and disappears when mouse is moved away. ** Would prefer that info is revealed when bookmarklet marker is selected and stays on screen until option to remove is selected/activated (like What Font? bookmarklet).</li>
+	<li>Sept 12, 2017 - Gunderson's favelets did not work on local file in IE. Worked on internet pages (www.justice.gov). This happened before in March 2016 and it magically worked again in June 2016. (Jon G. thinks it may be a change in IE since the bookmarklets have not been updated in Removing the IE results in for now.</li>
+	<li>For these 2 reasons, with no improvements to Gunderson's bookmarklet, I would recommend ANDI for forms.</li>
+</ul>
+</li>	
+<li>Forms 18 to 22 are from <a href="https://www.levelaccess.com/how-the-w3c-text-alternative-computation-works/" _target="_blank">Level access examples</a></li>
+<li>Neither tool is able to show aria group labels on <a href="http://oaa-accessibility.org/example/28/" target="_blank">Open Ajax Accessibility Example 28 - Radiogroup</a> </li>
+</ul>
+
+<h3>Form <code>INPUT</code> in a table with ARIA-labelledby only</h3>
+<p> <a href="http://webaim.org/techniques/forms/advanced" target="_blank">source</a> </p>
+
+<table border="1">	
+	<tr>
+		<th scope="col">Name</th>
+		<th id="officenum" scope="col">Office Number</th>
+		<th id="phonelabel" scope="col">Phone</th>
+	</tr>
+	<tr>
+		<th id="cyndi" scope="col">Cyndi</th>
+		<td><input type="text" size="4" name="office1" aria-labelledby="cyndi officenum"></td>
+		<td><input type="text" size="12" name="phone1" aria-labelledby="cyndi phonelabel"></td>
+	</tr>
+	
+	<tr>
+		<th id="jared" scope="col">Jared</th>
+		<td><input type="text" size="4" name="office2" aria-labelledby="jared officenum"></td>
+		<td><input type="text" size="12" name="phone2" aria-labelledby="jared phonelabel"></td>
+	</tr>
+	<tr>
+		<th id="jon" scope="col">Jonathan</th>
+		<td><input type="text" size="4" name="office3" aria-labelledby="jon officenum"></td>
+		<td><input type="text" size="12" name="phone3" aria-labelledby="jon phonelabel"></td>
+	</tr>
+	
+</table>
+<h4>Forms in Table observations</h4>
+<ul>
+<li>ANDI and Gunderson's form bookmarklet worked on the form elements in Chrome, showing the accessible name correctly.</li> <li>Gunderson's bookmarklet did not work on IE local content.</li>
+</ul>
+
+<!-- IGNORE the outdated content below for now.
+<h2>Data Tables</h2>
+<h3>Data table headers with ARIA only</h3>
+<table border="1">	
+	<tr>
+		<th id="name1">Name</th>
+		<th id="officenum">Office Number</th>
+		<th id="phonelabel">Phone</th>
+	</tr>
+	<tr>
+		<th id="cyndi" aria-labelledby="name1">Cyndi</th>
+		<td aria-labelledby="cyndi officenum">10</td>
+		<td aria-labelledby="cyndi phonelabel">11</td>
+	</tr>
+	
+	<tr>
+		<th id="jared" aria-labelledby="name1">Jared</th>
+		<td aria-labelledby="jared officenum">20</td>
+		<td aria-labelledby="jared phonelabel">21</td>
+	</tr>
+	<tr>
+		<th id="jon" aria-labelledby="name1">Jonathan</th>
+		<td aria-labelledby="jon officenum">30</td>
+		<td aria-labelledby="jon phonelabel">31</td>
+	</tr>
+
+</table>
+
+
+<h4>Data Table observations</h4>
+<ul>
+<li>Data table cells, no difference in using aria-labelledby technique when compared to use of headers and id technique. JAWS read the cell data and headers the same in both techniques.</li>
+<li>Use of the original TT ARIA favelet - IE: reveals only the labelledby assigned ID for the cells but no markup on the ID's so tester doesn't know if it's correct. Use WAT - Show Data tables first to mark ID's, then use ARIA favelet. Chrome: favelet markup adds cells and is confusing for tester. ID is shown on some, but not for all cells. If ID is shown, it is shown multiple times (once for each time it's called) and can be confusing.</li>
+<li><mark>No tool yet for coded aria data tables. Since there isn't an obvious reason to use ARIA on data tables, recommend using HTML techniques. </mark></li>
+</ul>
+
+
+<h2>Images with alt, title, aria-describedby</h2>
+<table border="1">
+<tr>
+	<th scope="col">Image</th>
+	<th scope="col">MS Inspect</th>
+	<th scope="col">A-B (Gunderson) Images favelet</th>
+	<th scope="col">AViewer</th>
+	<th scope="col">Visual ARIA</th>
+</tr>
+<tr>
+	<td>1. With alt only;
+		<img src="dud.png" alt="alt">
+	</td>
+	<td>No ARIA. Use WAT</td>
+	<td>Chrome and IE:<br> AccName=alt
+	</td>
+	<td>Chrome and IE:<br> AccName= alt
+	</td>
+	<td>Chrome and IE: bookmarklet does not mark up this image
+	</td>
+</tr>
+<tr>
+	<td>2. With title only;
+		<img src="dud.png" title="title">
+	</td>
+	<td>No ARIA. Use WAT</td>
+	<td>Chrome and IE: AccName=title
+	</td>
+	<td>Chrome: AccName=title<br><mark>IE: AccName=title, AccDescription=title</mark>
+	</td>
+	<td>Chrome and IE: bookmarklet does not mark up this image
+	</td>
+</tr>
+<tr>
+	<td>3. With alt and title only;
+		<img src="dud.png" alt="alt" title="title">
+	</td>
+	<td>No ARIA. Use WAT</td>
+	<td>Chrome and IE: AccName=alt, AccDescription=title
+	</td>
+	<td>Chrome and IE: AccName=alt, AccDescription=title
+	</td>
+	<td>Chrome and IE: bookmarklet does not mark up this image
+	</td>
+</tr>
+<tr>
+	<td>4. With aria-describedby only;
+		<img src="ladymacbeth.jpg" aria-describedby="p3">
+		<p id="p3">P3: This painting dates back to 1730 and is oil on canvas. It was created by 
+		Jean-Guy Millome, and represents ...</p>
+	</td>
+	<td>Chrome: no accname, accDescription=text of id in aria-describedby<br><mark>IE: no aria info or name info</mark></td>
+	<td>Chrome and IE:AccName=none, AccDescription=text of id in aria-describedby
+	</td>
+	<td>Chrome: AccName=none, AccDescription= text of id in aria-describedby<br><mark>**IE: MSAA AccName=none, AccDesc=none; ARIA attributes and UIAutomation CurrentAriaProperties says only describedby=p1, but not text of p1</mark>
+	</td>
+	<td>Chrome and IE: markup is only <mark>[ARIA] aria-describedby=p3</mark>. In IE, markup is in black font so it's hard to find
+	</td>
+</tr>
+
+<tr>
+	<td>5. With alt and aria-describedby;
+		<img src="ladymacbeth.jpg" alt="alt" aria-describedby="p5">
+		<p id="p5">P5: This painting dates back to 1730 and is oil on canvas. It was created by 
+		Jean-Guy Millome, and represents ...</p>
+	</td>
+	<td>Chrome:AccName=alt, AccDescription=text of id in aria-describedby<br><mark>IE: AccName=alt, no aria info</mark> </td>
+	<td>Chrome and IE:AccName=alt, AccDescription=text of id in aria-describedby
+	</td>
+	<td>Chrome: AccName=alt, AccDescription=text of id in aria-describedby<br><mark>**IE: AccName=alt, AccDescription=none; ARIA attributes and UIAutomation CurrentAriaProperties says only describedby=p1, but not value of p1</mark>
+	</td>
+	<td>Chrome and IE: markup is only <mark>[ARIA] aria-describedby=p5</mark>. In IE, markup is in black font so it's hard to find
+	</td>
+
+</tr>
+<tr>
+	<td>6. With alt and title and aria-describedby;
+		<img src="ladymacbeth.jpg" alt="alt" aria-describedby="p6" title="title">
+		<p id="p6">P6: This painting dates back to 1730 and is oil on canvas. It was created by 
+		Jean-Guy Millome, and represents ...</p>
+	</td>
+	<td>Chrome: AccName=alt, AccDescription=text of id in aria-describedby; title is ignored<br><mark>IE: accName=alt, accDesc=title, no aria info</mark> </td>
+	<td>Chrome and IE:AccName=alt, AccDescription=text of id in aria-describedby; title is ignored
+	</td>
+	<td>Chrome: AccName=alt, AccDescription=text of id in aria-describedby (title is ignored)<br><mark>**IE: AccName=alt, AccDescription=title; ARIA attributes and UIAutomation CurrentAriaProperties says only describedby=p1, but not value of p1</mark>
+	</td>
+	<td>Chrome and IE: markup is only <mark>[ARIA] aria-describedby=p6</mark>. In IE, markup is in black font so it's hard to find
+	</td>
+
+</tr>
+<tr>
+	<td>7. With title and aria-describedby;
+		<img src="ladymacbeth.jpg" aria-describedby="p7" title="title">
+		<p id="p7">P7: This painting dates back to 1730 and is oil on canvas. It was created by 
+		Jean-Guy Millome, and represents ...</p>
+	</td>
+	<td>Chrome: AccName=title, AccDescription=text of id in aria-describedby<br><mark>IE: accname=title, no aria info</mark></td>
+	<td>Chrome and IE:AccName=title, AccDescription=text of id in aria-describedby
+	</td>
+	<td>Chrome: AccName=title, AccDescription=text of id in aria-describedby<br><mark>**IE: AccName=title,AccDescription=title,ARIA attributes and UIAutomation CurrentAriaProperties says only describedby=p1, but not value of p1</mark>
+	</td>
+	<td>Chrome and IE: markup is only <mark>[ARIA] aria-describedby=p7</mark>. In IE, markup is in black font so it's hard to find
+	</td>
+</tr>
+<tr>
+	<td>8. With alt and aria-label and aria-describedby;
+		<img src="ladymacbeth.jpg" alt="alt" aria-label="aria label" aria-describedby="p8">
+		<p id="p8">P8: This painting dates back to 1730 and is oil on canvas. It was created by 
+		Jean-Guy Millome, and represents ...</p>
+	</td>
+	<td>Chrome: AccName=content of aria-label, AccDescription=text of id in aria-describedby. ALT is ignored<br><mark>IE: accName=content of aria-label, alt and aria-describedby ignored</mark></td>
+	<td>Chrome and IE:AccName=content of aria-label, AccDescription=text of id in aria-describedby<br>ALT is ignored
+	</td>
+	<td>Chrome: AccName=alt, AccDescription=text of id in aria-describedby<br><mark>**IE: alt, painting from AccDescription=none; ARIA attributes and UIAutomation CurrentAriaProperties says only describedby=p1, but not value of p1</mark>
+	</td>
+	<td>Chrome and IE: No alt info, markup is <mark>[ARIA] aria-label=painting from France aria-describedby=p8</mark>. In IE, markup is in black font so it's hard to find
+	</td>
+</tr>
+<tr>
+	<td>9. With alt and aria-labelledby and aria-describedby;
+		<img src="ladymacbeth.jpg" alt="alt" aria-labelledby="p10" aria-describedby="p9">
+		<p id="p9">P9: This painting dates back to 1730 and is oil on canvas. It was created by 
+		Jean-Guy Millome, and represents ...</p>
+		<p id="p10">P10: Painting from France</p>
+	</td>
+	<td>Chrome: AccName=text of ID of aria-labelledby, AccDescription=text of id in aria-describedby. ALT is ignored<br><mark>IE: accName=alt, no aria info </mark></td>
+	<td>Chrome and IE:AccName=text of ID of aria-labelledby, AccDescription=text of id in aria-describedby<br>ALT is ignored
+	</td>
+	<td>Chrome: AccName=alt, AccDescription=text of id in aria-describedby<br><mark>**IE: AccName=alt, AccDescription=none; ARIA attributes and UIAutomation CurrentAriaProperties says only describedby=p1, but not value of p1</mark>
+	</td>
+	<td>Chrome and IE: No alt info, markup is <mark>[ARIA] aria-labelledby=p10 aria-describedby=p9</mark>. In IE, markup is in black font so it's hard to find
+	</td>
+</tr>
+<tr>
+	<td>10. With aria-label and aria-labelledby and aria-describedby;
+		<img src="ladymacbeth.jpg" aria-label="aria label" aria-labelledby="p10" aria-describedby="p9">
+		<p id="p9">P9: This painting dates back to 1730 and is oil on canvas. It was created by 
+		Jean-Guy Millome, and represents ...</p>
+		<p id="p10">P10: Painting from France</p>
+	</td>
+	<td>Chrome: AccName=text of ID of aria-labelledby, AccDescription=text of id in aria-describedby. aria-label is ignored<br><mark>IE: accName=content of aria-label, other aria info ignored</mark> </td>
+	<td>Chrome and IE:AccName=text of ID of aria-labelledby, AccDescription=text of id in aria-describedby. aria-label is ignored
+	</td>
+	<td><mark>Chrome and IE: all ARIA listed but not as accname or accdesc: aria-label and its content,aria-describedby and its ID, aria-labelledby and its ID</mark>
+	</td>
+	<td>Chrome and IE: markup is <mark>[ARIA] aria-labelledby=p10 aria-describedby=p9</mark>.aria-label is ignored. In IE, markup is in black font so it's hard to find
+	</td>
+</tr>
+</table>
+<h3>Images Observations</h3>
+<ul>
+<li>AccName precendence: aria-labelledby, aria-label, ALT then title. When both aria-describedby and aria-label provided, aria-label is ignored.</li>
+<li>When both ALT and title provided, AccName=ALT and AccDescription=title.</li>
+<li>AccDescription precedence if alt is present: aria-describedby then title. If only both of these are provided (see 7), title becomes accname. Otherwise, accname precedence and title will be ignored.</li>
+<li><mark>**A-B (Gunderson) favelet requires mouse hover to reveal properites of image.</mark></li>
+<li>~March 2016: In IE, A-B (Gunderson) images favelet only marked the first image in above table. <mark>June 9, 2016 update: A-B works in IE the same as Chrome. No action taken from user side; fix must've been made elsewhere.</mark></li>
+<li><mark>**AViewer is harder to read in IE when aria is present in IE. MSAA shows the accName, but accdescription is blank and tester must search the other sections for aria.</mark></li>
+<li>AViewer in Chrome only shows one set of info (MSAA or IA2 unknown) and displays the text from the referenced aria ID; in IE it shows the aria ID referenced (but not the text of the reference).</li>
+<li><mark>Visual ARIA only marks up ARIA and doesn't provide the AccName or AccDescription, only the ARIA ID.</mark></li>
+</ul>
+<h2>Data Table association with ARIA</h2>
+
+
+
+<h2>Tool Configuration</h2>
+<h3>A-B Gunderson favelets - none</h3>
+
+<h3>AViewer Settings</h3>
+<table border="1">
+<tr>
+	<th>MSAA</th>
+	<th>IAccessible2</th>
+	<th>UIAutomation</th>
+</tr>
+<tr>
+	<td>accName<br>accRole<br>accState<br>accDescription<br>accValue</td>
+	<td>Name<br>Role<br>States<br>Description<br>Object Attributes<br>Value</td>
+	<td>CurrentAriaProperties<br>CurrentAriaRole<br>CurrentHelpText<br>CurrentIsRequiredForForm<br>CurrentItemStatus<br>CurrentItemType<br>CurrentName<br>CurrentDescribedBy<br>CurrentLabeledBy</td>
+</tr>
+</table>
+-->
+</body>
+
+</html>
