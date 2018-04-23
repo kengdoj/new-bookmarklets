@@ -1,6 +1,6 @@
 # Testing for Accessibility (updated 4/2/2018)
 
-Here's a page to [test Flash (red or general flash)](rgbcompute_c.html)
+Here's a page to [test Flash (red or general flash)](rgbcompute_d.html)
 
 
 ## Create a bookmarklet
