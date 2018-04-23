@@ -6,4 +6,4 @@ Now, if I only knew how to add a bookmarklet here....
 
 [Link to list](bookmarklets.md)
 
-[Flash computations](rgbcompute_c.html)
+[Flash computations](rgbcompute_d.html)
