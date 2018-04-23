@@ -23,4 +23,4 @@
     } else {
       alert("The absolute positions are highlighted.");
     }
-})();
+}
