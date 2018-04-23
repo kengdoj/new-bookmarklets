@@ -46,5 +46,6 @@ I like to use this [Bookmarklet Crunchinator](http://ted.mielczarek.org/code/moz
 * [slayeroffice Favelet Suite](http://slayeroffice.com/?c=/content/tools/suite.html)
 
 * [ANDI](https://www.ssa.gov/accessibility/andi/help/install.html)
+* [Textise](https://www.textise.net/Bookmarklet.aspx)
 
 
