@@ -13,7 +13,9 @@
       }
     }
     alert("there are "+count+" absolute positions: "+absolutes);
-    if(confirm("Remove the absolute position style?")==true) { 
+    if (count==0) {
+        return;
+    } else {if confirm("Remove the absolute position style?")==true) { 
       for(i=0;i<absolutes.length;i++) {
         thisclass=absolutes[i];
         thisclass.setAttribute("style","background-color: lime; position: static;");
