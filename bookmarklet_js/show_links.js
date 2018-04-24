@@ -1,7 +1,9 @@
 (function() {
   var l;
+  var count;
   for(l=0;l<document.all.length;l++) { 
     if(document.all[l].tagName=='A') { 
+      count=count+1;
       with(document.all[l].style) {
         if(backgroundColor=='lime') {
           void(backgroundColor=document.bgColor)
@@ -10,4 +12,8 @@
         }
       }
     }
-  })();
+  }
+  if (count==0) {
+  alert ("No links found.");
+  }
+  )();
