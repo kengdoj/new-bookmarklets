@@ -16,7 +16,7 @@
 				}
 		}	
 	}		
-	if (count=0) {
+	if (count==0) {
 		alert("No background images found.");
 		return;
 	} else if(confirm("Do you want to hide the background images?")==true) {
