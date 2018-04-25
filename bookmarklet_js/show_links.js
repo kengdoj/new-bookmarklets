@@ -16,4 +16,5 @@
   if (count==0) {
   alert ("No links found.");
   }
+}
   )();
