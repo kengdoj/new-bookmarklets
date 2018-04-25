@@ -1,6 +1,6 @@
 (function() {
   var l;
-  var count;
+  var count=0;
   for(l=0;l<document.all.length;l++) { 
     if(document.all[l].tagName=='A') { 
       count=count+1;
