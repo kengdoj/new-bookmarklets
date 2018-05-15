@@ -25,7 +25,7 @@
 	
 	//add div to top of body
 	document.body.insertBefore(add_div, document.body.firstChild);
-    setInterval(blink3, 333);
+    setInterval(blink3, 167); //was 333
 
 function blink3() {
 	var x = document.getElementById("text");
