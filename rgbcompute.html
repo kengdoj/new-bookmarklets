@@ -103,7 +103,7 @@ a:active,a:hover {
 <p><strong>**Warning: activating the bookmarklet will place flashing content on the screen.**</strong> Using this bookmarklet to test flashing content will result in multiple flashing elements on screen.</p>
 <ol>
 	<li>Add the <a href="javascript:(function(){OverlayScript=document.createElement('script');OverlayScript.setAttribute('src','https://kengdoj.github.io/new-bookmarklets/bookmarklet_js/flasher3hz.js');document.body.insertBefore(OverlayScript, document.body.firstChild);}());">3Hz Flasher</a> bookmarklet to your browser. </li>
-	<li>Once the bookmarklet is installed, navigate to the web page to be tested.</li>
+	<li>After the bookmarklet is installed, navigate to the web page to be tested.</li>
 	<li>Active the 3Hz Flasher bookmarklet to display an overlay with text that flashes at 3 Hz (3 times per second). This can be used as a reference to help determine whether something is flashing slower or faster than 3 Hz.</li>
 	<ul>
 		<li>If it is obviously flashing slower than the overlay text, then it is below the 3 hertz frequency requirement. It's conformant with SC 2.3.1. Further testing is not necessary.</li>
@@ -112,12 +112,12 @@ a:active,a:hover {
 </ol>
 	
 <h2>Step 2: Check the size of the flashing content</h2>
-<p>With the component's frequency (possibly) above 3 Hertz, it must be within a size requirement or it must not contain a general flash or red flash. We will check the size requirement first since it's easier. </p>
+<p>With the component's frequency (possibly) above 3 Hertz, it must be either within a size requirement or it must not contain a general flash or red flash. We will check the size requirement first since it's easier. </p>
 
 <p> The flashing content meets the requirement if the combined area of flashes is smaller than a 341x256 pixel rectangle when the content is viewed at 1024 x 768 screen resolution. 
 <ol>
 	<li>Add the <a href="javascript:(function(){FlashRecScript=document.createElement('script');FlashRecScript.setAttribute('src','https://kengdoj.github.io/new-bookmarklets/bookmarklet_js/flash_rectc.js');document.body.insertBefore(FlashRecScript, document.body.firstChild);}());">Flash Rectangle bookmarklet</a> to your browser.</li>
-	<li>Once the bookmarklet is installed, navigate to the web page to be tested.</li>
+	<li>After the bookmarklet is installed, navigate to the web page to be tested.</li>
 	<li><a href="https://support.microsoft.com/en-us/help/14108/windows-7-change-screen-resolution" target="_blank">Set your screen resolution</a> to 1024 x 768.</li>
 	<li>Activate the Flash rectangle bookmarklet and drag the rectangle over the flashing content. </li>
 		<ul>
@@ -127,7 +127,7 @@ a:active,a:hover {
 	
 </ol>
 <h2>Step 3: Check for a general flash or red flash</h2>
-<p> This final test step utilizes the values entered below (on this page) to compute the existence of a red or general flash. Obtain the RGB values of a component that flashes. This can be done by using the eye dropper tool of the <a href="https://developer.paciellogroup.com/resources/contrastanalyser/" target="_blank">Color Contrast Analyser (CCA) from the Paciello Group</a> or a similar eye dropper tool. </p>
+<p> This final test step utilizes the values entered below (on this page) to compute the existence of a red or general flash. Obtain the RGB values of the component that flashes. This can be done by using the eye dropper tool of the <a href="https://developer.paciellogroup.com/resources/contrastanalyser/" target="_blank">Color Contrast Analyser (CCA) from the Paciello Group</a> or a similar eye dropper tool. </p>
 <p><strong>**Warning: extended viewing of a flashing component is necessary to grab the colors with an eye dropper.**</strong></p>
 <ol>
 <li>Select the Foreground eye dropper. </li>
@@ -158,7 +158,7 @@ a:active,a:hover {
 
 </form>
 
-<h2>Results of the entered color values will display below:</h2>
+<h3>Results of the entered color values will display below:</h3>
 
 <p id="error"></p>
 
