@@ -92,15 +92,21 @@ a:active,a:hover {
 
 </head>
 <body>
-<h1>Three Flashes or Below Threshold</h1>
+<h1>Testing for Three Flashes or Below Threshold</h1>
 <p> WCAG 2.0 SC 2.3.1 Level A requirement:</p>
 <blockquote cite="https://www.w3.org/TR/UNDERSTANDING-WCAG20/seizure-does-not-violate.html"> Web pages do not contain anything that flashes more than three times in any one second period, or the flash is below <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/seizure-does-not-violate.html#general-thresholddef" target="_blank">the general flash and red flash thresholds</a>. 
 </blockquote>
-<p><strong>**Testers with sensitivity to flashing components should not perform these tests.**</strong> The following tests require extended viewing of flashing content that may not be safe for the tester. Please read the test descriptions before performing any tests. </p>
+<p>The following tests can be performed in any order, but have been listed according the SC requirement. Passing any of the tests will meet SC 2.3.1:
+	<ul>
+		<li>Test 1: if a flashing element has a frequency at or below 3 Hertz;</li>
+		<li>Test 2: if a flashing component is smaller than the size threshold;</li>
+		<li>Test 3: if a flashing component does not contain a general flash or a red flash.</li>
+	</ul>
+<p><strong>**These tests may not be safe for testers with sensitivity to flashing components.**</strong> These tests require extended viewing of flashing content. Testers are strongly encouraged to read the test descriptions and understand the warnings before performing any tests. </p>
 
-<h2>Step 1: The 3 Hertz Flasher</h2>
-<p>Determine if the frequency of the flashing component is at or below 3 Hertz. If the frequency is 3 Hertz or below (slower), then it meets the requirement. </p>
-<p><strong>**Warning: activating the bookmarklet will place flashing content on the screen.**</strong> Using this bookmarklet to test flashing content will result in multiple flashing elements on screen.</p>
+<h2>Test 1: The 3 Hertz Flasher</h2>
+<p>Determine if the frequency of the flashing component is 3 Hertz or below. If it is, then it meets the requirement. </p>
+<p><strong>**Warning: activating the bookmarklet will display flashing content on the screen.**</strong> Using this bookmarklet to test flashing content will result in multiple flashing elements on screen.</p>
 <ol>
 	<li>Add the <a href="javascript:(function(){OverlayScript=document.createElement('script');OverlayScript.setAttribute('src','https://kengdoj.github.io/new-bookmarklets/bookmarklet_js/flasher3hz.js');document.body.insertBefore(OverlayScript, document.body.firstChild);}());">3Hz Flasher</a> bookmarklet to your browser. </li>
 	<li>After the bookmarklet is installed, navigate to the web page to be tested.</li>
@@ -109,30 +115,33 @@ a:active,a:hover {
 		<li>If it is obviously flashing slower than the overlay text, then it is below the 3 hertz frequency requirement. It's conformant with SC 2.3.1. Further testing is not necessary.</li>
 		<li>If page content is flashing faster than the overlay text, or it's close or too difficult to determine which is faster, continue to the next step for further testing. </li>
 	</ul>
+	<li>To remove the flashing overlay text, refresh the page.</li>
 </ol>
 	
-<h2>Step 2: Check the size of the flashing content</h2>
-<p>With the component's frequency (possibly) above 3 Hertz, it must be either within a size requirement or it must not contain a general flash or red flash. We will check the size requirement first since it's easier. </p>
+<h2>Test 2: Check the size of the flashing content</h2>
+<p>A flashing component must be either smaller than a size requirement or it must not contain a general flash or red flash. We will check the size requirement first since it's an easier test. </p>
 
 <p> The flashing content meets the requirement if the combined area of flashes is smaller than a 341x256 pixel rectangle when the content is viewed at 1024 x 768 screen resolution. 
 <ol>
 	<li>Add the <a href="javascript:(function(){FlashRecScript=document.createElement('script');FlashRecScript.setAttribute('src','https://kengdoj.github.io/new-bookmarklets/bookmarklet_js/flash_rectc.js');document.body.insertBefore(FlashRecScript, document.body.firstChild);}());">Flash Rectangle bookmarklet</a> to your browser.</li>
 	<li>After the bookmarklet is installed, navigate to the web page to be tested.</li>
 	<li><a href="https://support.microsoft.com/en-us/help/14108/windows-7-change-screen-resolution" target="_blank">Set your screen resolution</a> to 1024 x 768.</li>
-	<li>Activate the Flash rectangle bookmarklet and drag the rectangle over the flashing content. </li>
+	<li>Activate the Flash rectangle bookmarklet. Choose a vertical or horizontal orientation and drag the rectangle over the flashing content. </li>
 		<ul>
-			<li>If all of the combined flashing content can be covered by the rectangle, it is below the general flash and red flash threshold and passes SC 2.3.1. Further testing is not necessary.</li>
+			<li>If all of the combined flashing content can be covered by the rectangle, it is small enough and passes SC 2.3.1. Further testing is not necessary.</li>
 			<li>If all of the combined flashing content can not be covered by the rectangle, continue to the next test. 
 		</ul>
-	
+	<li>To remove the flash rectangle, refresh the page.</li>
 </ol>
-<h2>Step 3: Check for a general flash or red flash</h2>
-<p> This final test step utilizes the values entered below (on this page) to compute the existence of a red or general flash. Obtain the RGB values of the component that flashes. This can be done by using the eye dropper tool of the <a href="https://developer.paciellogroup.com/resources/contrastanalyser/" target="_blank">Color Contrast Analyser (CCA) from the Paciello Group</a> or a similar eye dropper tool. </p>
+<h2>Test 3: Check for a general flash or red flash</h2>
+<p>This final test step utilizes the values entered below (on this page) to compute the existence of a red or general flash. Obtain the RGB values of the component that flashes. This can be done by using the eye dropper tool of the <a href="https://developer.paciellogroup.com/resources/contrastanalyser/" target="_blank">Color Contrast Analyser (CCA) from the Paciello Group</a> or a similar eye dropper tool. </p>
 <p><strong>**Warning: extended viewing of a flashing component is necessary to grab the colors with an eye dropper.**</strong></p>
 <ol>
+	<li>Navigate to the page to be tested.</li>
+	<li>Open the eye dropper tool (CCA)</li>
 <li>Select the Foreground eye dropper. </li>
-<li>Place the eye dropper tool over a flashing element to grab the color of the flash. CCA will display the RGB values for that color. (If hex values are displayed, select "RGB" under the Options menu - Displayed color value.) 
-<li>Use the Background eye dropper to grab the opposing color of the flashing element.</li>
+<li>Place the eye dropper tool over the flashing element to select a color that is flashing. CCA will display the RGB values for that color. (If hex values are displayed, select "RGB" under the Options menu - Displayed color value.) 
+<li>Use the Background eye dropper to select the opposing color of the flashing element.</li>
 </ol>
 
 <h3>Enter the RGB values for the two colors</h3>
