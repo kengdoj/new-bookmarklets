@@ -3,17 +3,19 @@
 	add_div.setAttribute('id', 'mydiv');
     add_div.style.position = "absolute";
     add_div.style.zIndex = "99";
+	//start with horizontal, add button to change orientation
+	
 	//add option to choose vertical or horizontal rectangle
-	var ori = prompt("Enter 'h' for a horizontal rectangle or 'v' for a vertical rectangle:");
-	if (ori == "h") {
+	//var ori = prompt("Enter 'h' for a horizontal rectangle or 'v' for a vertical rectangle:");
+	//if (ori == "h") {
 		//Horizontal rectangle
 		add_div.innerHTML = '<canvas id="myCanvas" width="341" height="256" style="border:1px solid #000000; background:#8080C0;">';
 		
-	} 
-		else if (ori == "v") {
-		//Vertical rectangle
-		add_div.innerHTML = '<canvas id="myCanvas" width="256" height="341" style="border:1px solid #000000; background:#8080C0;">';
-	} else {return;}
+	//} 
+	//	else if (ori == "v") {
+	//	//Vertical rectangle
+	//	add_div.innerHTML = '<canvas id="myCanvas" width="256" height="341" style="border:1px solid #000000; background:#8080C0;">';
+	//} else {return;}
 	
 	//add div to body end
     //document.body.appendChild(add_div);
