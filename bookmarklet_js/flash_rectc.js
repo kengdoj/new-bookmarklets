@@ -1,4 +1,7 @@
 (function() {
+	var sheet = document.createElement('style');
+	sheet.innerHTML = 'div {margin: 0;}';
+	document.body.appendChild(sheet);
 	var add_div = document.createElement('div');
 	add_div.setAttribute('id', 'mydiv');
     add_div.style.position = "absolute";
