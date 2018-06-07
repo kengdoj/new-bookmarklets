@@ -5,7 +5,7 @@
 	var add_div = document.createElement('div');
 	add_div.setAttribute('id', 'mydiv');
     add_div.style.position = "absolute";
-    add_div.style.zIndex = "99";
+    add_div.style.zIndex = "999999";
 	//add option to choose vertical or horizontal rectangle
 	var ori = prompt("Enter 'h' for a horizontal rectangle or 'v' for a vertical rectangle:");
 	if (ori == "h") {
