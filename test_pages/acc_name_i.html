@@ -526,6 +526,36 @@ h4 {
 	<td>Chrome and IE: markup is <mark>[ARIA] aria-labelledby=p10 aria-describedby=p9</mark>.aria-label is ignored. In IE, markup is in black font so it's hard to find
 	</td>
 </tr>
+<tr>
+	<td>11. With role=presentation and other aria labels;
+		<img src="ladymacbeth.jpg" aria-label="aria label" aria-labelledby="p10" aria-describedby="p9" role="presentation">
+		<p id="p9">P9: This painting dates back to 1730 and is oil on canvas. It was created by 
+		Jean-Guy Millome, and represents ...</p>
+		<p id="p10">P10: Painting from France</p>
+	</td>
+	<td>Chrome: AccName=text of ID of aria-labelledby, AccDescription=text of id in aria-describedby. aria-label is ignored<br><mark>IE: accName=content of aria-label, other aria info ignored</mark> </td>
+	<td>Chrome and IE:AccName=text of ID of aria-labelledby, AccDescription=text of id in aria-describedby. aria-label is ignored
+	</td>
+	<td><mark>Chrome and IE: all ARIA listed but not as accname or accdesc: aria-label and its content,aria-describedby and its ID, aria-labelledby and its ID</mark>
+	</td>
+	<td>Chrome and IE: markup is <mark>[ARIA] aria-labelledby=p10 aria-describedby=p9</mark>.aria-label is ignored. In IE, markup is in black font so it's hard to find
+	</td>
+</tr>
+<tr>
+	<td>11. With aria hidden=true and other aria labels;
+		<img src="ladymacbeth.jpg" aria-label="aria label" aria-labelledby="p10" aria-describedby="p9" aria-hidden="true">
+		<p id="p9">P9: This painting dates back to 1730 and is oil on canvas. It was created by 
+		Jean-Guy Millome, and represents ...</p>
+		<p id="p10">P10: Painting from France</p>
+	</td>
+	<td>Chrome: AccName=text of ID of aria-labelledby, AccDescription=text of id in aria-describedby. aria-label is ignored<br><mark>IE: accName=content of aria-label, other aria info ignored</mark> </td>
+	<td>Chrome and IE:AccName=text of ID of aria-labelledby, AccDescription=text of id in aria-describedby. aria-label is ignored
+	</td>
+	<td><mark>Chrome and IE: all ARIA listed but not as accname or accdesc: aria-label and its content,aria-describedby and its ID, aria-labelledby and its ID</mark>
+	</td>
+	<td>Chrome and IE: markup is <mark>[ARIA] aria-labelledby=p10 aria-describedby=p9</mark>.aria-label is ignored. In IE, markup is in black font so it's hard to find
+	</td>
+</tr>
 </table>
 <h3>Images Observations</h3>
 <ul>
