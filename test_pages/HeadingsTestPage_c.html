@@ -16,10 +16,12 @@ h3, .heading3 { font-size: 1.5em; font-weight: normal; }
 <h2>Heading <code>&lt;h2&gt;</code></h2>
 <h3>Heading <code>&lt;h3&gt;</code></h3>
 <hr>
+  <h2>Styled headings (no &lt;h&gt;)</h2>
 <p class="heading1">Styled heading with <code>class="heading1"</code></p>
 <p class="heading2">Styled heading with <code>class="heading2"</code></p>
 <p class="heading3">Styled heading with <code>class="heading3"</code></p>
 <hr>
+  <h2>P's with role-heading and aria-level</h2>
 <p class="heading1" role="heading" aria-level="1"><code>role="heading"</code> and <code>aria-level="1"</code></p>
 <p class="heading2" role="heading" aria-level="2"><code>role="heading"</code> and <code>aria-level="2"</code></p>
 <p class="heading3" role="heading" aria-level="3"><code>role="heading"</code> and <code>aria-level="3"</code></p>
@@ -27,10 +29,10 @@ h3, .heading3 { font-size: 1.5em; font-weight: normal; }
 <p role="heading"> General <code>role="heading"</code>, no level assigned</p>
 
 <h1>Mixing of html and aria</h1>
-<h1 aria-level="1">h1 heading</h1>
+<h1 role="heading" aria-level="2">h1 heading with role=heading level 2</h1>
 <h2 role="heading" aria-level="1">h2 heading with role=heading level=1</h2>
-<p role="heading">Default level of aria heading that has no aria-level specified is 2. But this doesn't look like the H2</p>
+<p role="heading">P with role=heading but no aria-level. </p>
 <h3 aria-level="2">h3 heading</h3>
-<h4 aria-level="3">h4 heading</h4>
+
 </body>
 </html>
