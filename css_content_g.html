@@ -21,7 +21,14 @@ h3::after {
 #intro::after {
 	content: " after a ID";
 	}
-
+.hidden 
+{position:absolute;
+left:-10000px;
+top:auto;
+width:1px;
+height:1px;
+overflow:hidden;}
+	
 </style>
 <style type="text/css">
       a[href][target="_blank"]:focus:after, a[href][target="_blank"]:hover:after {
@@ -172,7 +179,7 @@ for (i=0; i<classes.length; i++) {
   <!-- <div class="absolute">This div element has position: absolute;</div> -->
 </div>
 <div id="absolute">This div element has position: absolute;</div>
-
+<div class="hidden">This text is hidden.</div>
 <button onclick="ShowAbsolutes()">Find stuff positioned - absolutely!</button>
 
 
