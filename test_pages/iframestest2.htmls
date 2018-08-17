@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<meta charset=utf-8 />
+<title>Tabindex="-1" on iframe</title>
+<style>
+
+
+
+
+
+
+</style>
+</head>
+
+<body>
+<p><a href="http://www.davidmacd.com">back to CanAdapt home</a></p>
+<h1>Title</h1>
+<p>Testing tabindex=-1 on an iframe that has tab stops inside it.</p>
+<h2>Test 1: tabindex=&quot;-1&quot; on iframe</h2>
+<p>The frame is below:</p>
+<iframe src="http://www.davidmacd.com" tabindex="-1" height="100px" width="200px" aria-label="with tabindex"></iframe>
+<p>Here's a link just to test where <a href="#">the focus went</a> since there's no visual focus on the iframes.</p>
+<h2>Test 2: Remove tabindex from  iframe</h2>
+<p>
+  <iframe src="http://www.davidmacd.com" height="100px" width="200px" aria-label="no tabindex"></iframe>
+</p>
+<p>Here's another link just to test where <a href="#">the focus went</a> since there's no visual focus on the iframes.</p>
+<h2>Code Used</h2>
+<p><code>  &lt;h2&gt;Test 1: tabindex=&amp;quot;-1&amp;quot; on iframe&lt;/h2&gt;<br>
+&lt;p&gt;The frame is below:&lt;/p&gt;</code><code><br>
+  &lt;iframe src=&quot;http://www.davidmacd.com&quot; tabindex=&quot;-1&quot; height=&quot;100px&quot; width=&quot;200px&quot;&gt;&lt;/iframe&gt;<br>
+</code></p>
+<p><code>&lt;h2&gt;Test 2: Remove tabindex from iframe&lt;/h2&gt;<br>
+  &lt;p&gt;<br>
+  &lt;iframe src=&quot;http://www.davidmacd.com&quot; height=&quot;100px&quot; width=&quot;200px&quot;&gt;&lt;/iframe&gt;<br>
+  &lt;/p&gt;</code></p>
+<h2>Results</h2>
+<ul>
+  <li>In WIN10, IE with JAWS: tab enters iframe to access the links the same in both cases.</li>
+  <li>JAWS with Firefox on WIN10: tab enters iframe the same in both cases.</li>
+  <li>JAWS in Chrome: tab key jumps the ifrrame with tabindex=-1</li>
+  <li>NVDA on Firefox: skips iframe tabindex=-1. Stops there but announces nothing </li>
+  <li>VoiceOver in Safari: tab key skips over the iframe with tabindex=-1</li>
+  
+  <li>In OSx Safari and Chrome: tab key doesn't allow the user to enter the iframe with the tab key. </li>
+</ul>
+<h2>Comments</h2>
+<p>Only JAWS allows the user to tab into an iframe that has links, if the iframe has tabindex=-1. NVDA on Windows and VoiceOver on Safari do not stop on tabs inside an iframe if it has tabindex=-1. Therefore, don't use tabindex=-1 on an iframe that has tab stops inside it. iFrame behaviour is not uniform across screen readers, and browser tab stop behaviour. It's best for authors not to rely on them for large amounts of content. They are flakey in browsers/screeen reader support and have varied behaviour.</p>
+<p>&nbsp;</p>
+</body>
+</html>
