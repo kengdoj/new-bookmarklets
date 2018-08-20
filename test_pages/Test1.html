@@ -5,16 +5,16 @@
 </head>
 <body>
 
-<H1>Fix all 508 conformance issues on this page</H2>
+<H1>Complete the form</H2>
 
 <form>
-	<p>Name: <input type="text"></p>
+	<p>Name: <input type="text" aria-label="name"></p>
 	
-	<p>Current Location:
-		<input type="radio">Region 1
-		<input type="radio">Region 2
-		<input type="radio">Region 3
-	</p>
+	<p id="loc">Current Location:</p>
+		<input type="radio" id="reg1 loc"><span id="reg1">Region 1</span>
+		<input type="radio" id="reg2 loc"><span id="reg2">Region 2</span>
+		<input type="radio" id="reg3 loc"><span id="reg3">Region 3</span>
+	
 
 </form>
 
