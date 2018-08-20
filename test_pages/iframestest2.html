@@ -8,20 +8,19 @@
 
 <body>
 <p><a href="http://davidmacd.com/test/tabindex-1-on-iframe.html">Borrowed from CanAdapt</a>, with some minor edits.</p>
-<h1>Title</h1>
-<p>Testing tabindex=-1 on an iframe that has tab stops inside it.</p>
-<h2>Test 1: tabindex=&quot;-1&quot; on iframe</h2>
-<iframe src="https://kengdoj.github.io/new-bookmarklets/test_pages/Test1.html" tabindex="-1" height="100px" width="400px" aria-label="with tabindex"></iframe>
+
+<h2>Test 1: tabindex=&quot;-1&quot; on iframe with tabbable content</h2>
+<iframe src="https://kengdoj.github.io/new-bookmarklets/test_pages/Test1.html" tabindex="-1" height="100px" width="400px" aria-label="aria label iframe 1"></iframe>
 <p><a href="#">Test Link 1</a></p>
-<h2>Test 2: Remove tabindex from  iframe</h2>
-  <iframe src="https://kengdoj.github.io/new-bookmarklets/test_pages/Test1.html" height="100px" width="400px" aria-label="no tabindex"></iframe>
+<h2>Test 2: Remove tabindex from iframe with tabbable content</h2>
+  <iframe src="https://kengdoj.github.io/new-bookmarklets/test_pages/Test1.html" height="100px" width="400px" aria-label="aria lable iframe 2"></iframe>
 <p><a href="#">Test Link 2</a></p>
 
  <h2>Test 3: tabindex=&quot;-1&quot; on iframe with just text</h2>
-  <iframe src="https://kengdoj.github.io/new-bookmarklets/test_pages/HeadingsTestPage_b.html" tabindex="-1" height="100px" width="200px" aria-label="with tabindex and just text"></iframe>
+  <iframe src="https://kengdoj.github.io/new-bookmarklets/test_pages/text.html" tabindex="-1" height="100px" width="200px" aria-label="aria label iframe 3"></iframe>
 <p><a href="#">Test Link 3</a></p>
-  <h2>Test 4: Remove tabindex from text iframe</h2>
-  <iframe src="https://kengdoj.github.io/new-bookmarklets/test_pages/HeadingsTestPage_b.html" height="100px" width="200px" aria-label="no tabindex and just text"></iframe>
+  <h2>Test 4: Remove tabindex from iframe with just text</h2>
+  <iframe src="https://kengdoj.github.io/new-bookmarklets/test_pages/text.html" height="100px" width="200px" aria-label="aria label iframe 4"></iframe>
 <p><a href="#">Test Link 4</a></p>
 
   
