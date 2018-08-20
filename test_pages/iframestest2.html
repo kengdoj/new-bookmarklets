@@ -11,21 +11,22 @@
 <h1>Title</h1>
 <p>Testing tabindex=-1 on an iframe that has tab stops inside it.</p>
 <h2>Test 1: tabindex=&quot;-1&quot; on iframe</h2>
-
 <iframe src="https://kengdoj.github.io/new-bookmarklets/test_pages/acc_name_i.html" tabindex="-1" height="100px" width="400px" aria-label="with tabindex"></iframe>
-<p>Here's a link just to test where <a href="#">the focus went</a> since there's no visual focus on the iframes.</p>
+<p><a href="#">Test Link 1</a></p>
 <h2>Test 2: Remove tabindex from  iframe</h2>
-<p>
   <iframe src="https://kengdoj.github.io/new-bookmarklets/test_pages/acc_name_i.html" height="100px" width="400px" aria-label="no tabindex"></iframe>
-</p>
-<p>Here's another link just to test where <a href="#">the focus went</a> since there's no visual focus on the iframes.</p>
+<p><a href="#">Test Link 2</a></p>
 
  <h2>Test 3: tabindex=&quot;-1&quot; on iframe with just text</h2>
   <iframe src="https://kengdoj.github.io/new-bookmarklets/test_pages/HeadingsTestPage_b.html" tabindex="-1" height="100px" width="200px" aria-label="with tabindex and just text"></iframe>
- <h2>Test 4: Remove tabindex from text iframe</h2>
+<p><a href="#">Test Link 3</a></p>
+  <h2>Test 4: Remove tabindex from text iframe</h2>
   <iframe src="https://kengdoj.github.io/new-bookmarklets/test_pages/HeadingsTestPage_b.html" height="100px" width="200px" aria-label="no tabindex and just text"></iframe>
+<p><a href="#">Test Link 4</a></p>
 
-<h2>CanAdapt Results</h2>
+  
+  
+  <h2>CanAdapt Results</h2>
 <ul>
   <li>In WIN10, IE with JAWS: tab enters iframe to access the links the same in both cases.</li>
   <li>JAWS with Firefox on WIN10: tab enters iframe the same in both cases.</li>
