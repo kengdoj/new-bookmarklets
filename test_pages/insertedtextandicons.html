@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Using aria-hidden=true on an icon font that AT should ignore</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <!-- source: view-source:http://www.d.umn.edu/~lcarlson/wcagwg/tests/iconfonts/decorative.html -->
+	  <style>
+		body {
+font-family : Arial, Helvetica, sans-serif;
+}
+         @font-face {
+         /* Specify font-family name to identify the font */
+         font-family: 'FontAwesome';
+         /* Paths to icons */
+         src: url('icons/fontawesome-webfont.eot');
+         src: url('icons/fontawesome-webfont.eot?#iefix') 
+         format('embedded-opentype'), 
+         url('icons/fontawesome-webfont.woff2') 
+         format('woff2'), 
+         url('icons/fontawesome-webfont.woff') 
+         format('woff'), 
+         url('icons/fontawesome-webfont.ttf') 
+         format('truetype'), 
+         url('icons/fontawesome-webfont.svg#fontawesomeregular') 
+         format('svg');
+		 
+         }
+         .fa {
+         font: normal 1em/1 FontAwesome;
+         background-color:white;
+         color:red;
+		 }
+         h2 .fa-caret-right:before {
+         /* Icon added via generated content 
+         from Unicode Private Use Area (PUA) */
+         content: "\f0da some text";
+         font-size:1.5em;
+         }
+         h3 .fa-check:before {
+         /* Icon added via generated content 
+         from Unicode Private Use Area (PUA) */
+         content: "\f00c more text"; 
+         font-size:1.2em;
+         margin-left:0.2em;
+         }
+		 [data-icon]:before {
+  font-family: icons; /* BYO icon font, mapped smartly */
+  content: attr(data-icon);
+  }
+}
+      </style>
+   </head>
+   <script>
+   function HighlightIcons() {
+	//from https://www.w3.org/wiki/Dynamic_style_-_manipulating_CSS_with_JavaScript
+	var sheet = document.createElement('style');
+	sheet.innerHTML = "i, .fa, .glyphicon, .material-icons, [data-icon] { background-color: lime; }";
+	document.body.appendChild(sheet);
+   }
+   </script>
+   <body>
+      <h1>Using aria-hidden=&quot;true&quot; on an icon font that AT should ignore</h1>
+      <h2>
+         <!-- Right caret icon added visually. Voicing suppressed. -->
+         <span class="fa fa-caret-right" aria-hidden="true"></span>
+         Heading preceded by a decorative icon font inserted :before, aria-hidden=true, AT skips it
+      </h2>
+      <h3>
+         <!-- Checkmark icon added visually. Voicing suppressed. -->
+         <span class="fa fa-check"></span>
+         Sub-heading preceded by a decorative icon font inserted :before
+      </h3>
+	  <!-- From W3schools -->
+	  <h1>Windows 10 Enterprise Narrator with  Edge Results</h1>
+	  <h2>Font awesome </h2>
+	  <ol>
+	  <li><mark>Working Technique: <i class="fa fa-cloud"></i>, (no accessibility attributes added); both: nothing read</mark></li>
+<li><i class="fa fa-heart" title="happy heart day"></i>, (just a title, no role); KE: title read correctly/Cliff: icon not read</li>
+<li><mark>Working Technique: <i class="fa fa-car" aria-hidden="true"></i>, (aria-hidden is true not needed); Both: nothing read</mark> </li>
+<li><i class="fa fa-car" role="presentation" title=car"></i>, (role=presentation); Kathy: title car; CLIFF </li>
+<li><i class="fa fa-file" title="page" role="img"></i>, (role=img, title); KE: nothing read/Cliff: title "image page"</li>
+<li><i class="fa fa-file" alt="page" role="img"></i>, (role=img; i attribute ALT); KE: nothing read/Cliff: "image" (not sure if this is the same. KE Narrator does not announce "image")</li>
+<li><mark>Working Technique: <i class="fa fa-bars" aria-label="menu" role="img"></i>, (role=img, aria-label), both: "image menu" (KE Narrator doesn't announce "image")</mark></li>
+<li><i class="fa fa-file" aria-label="page"></i>, (aria label, no role), KE: aria read correctly "page"/Cliff: "text"</li>
+<li><i class="fa fa-file" role="presentation" aria-label="page 4"></i>, (aria label, role=presentation), KE: nothing read (correct)/CLIFF</li>
+</ol>
+	<h2>Bootstrap </h2>
+	<ol>
+<li><i class="glyphicon glyphicon-cloud"></i>, (no added attributes); KE: nothing read/Cliff:"cloud"</li>
+<li><mark><i class="glyphicon glyphicon-remove" title="delete this"></i>, (just a title, no role); KE: "delete this" from title/Cliff: none, skipped over</li>
+<li><mark>Working Technique: <i class="glyphicon glyphicon-user"></i> New user, (on screen text, no aria hidden), KE: icon skipped, text read/Cliff:none, skipped over) (This is probably the same)</mark> </li>
+<li><i class="glyphicon glyphicon-envelope" title="email alert" role="img"></i> (role=img, title); KE: nothing read/Cliff:"Image email alert"</li>
+<li><i class="glyphicon glyphicon-envelope" alt="email alert" role="img"></i> (role=img; i attribute ALT); KE: nothing read/Cliff:"image envelope"</li>
+<li><mark>Working Technique: <i class="glyphicon glyphicon-thumbs-up" aria-label="like this entry" role="img"></i> (role=img; i aria-label); KE: aria-label is read "like this entry"/Cliff: "image like this entry" (KE Narrator doesn't announce "image")</li>
+<li><i class="glyphicon glyphicon-envelope" aria-label="email alert"></i> (aria label, no role); KE: aria label "email alert"/Cliff: "text envelope"</li>
+<li><i class="glyphicon glyphicon-envelope" aria-label="email alert" role="presentation"></i> (aria label, role=presentation); KE: nothing read (correct)/CLIFF</li>
+</ol>
+<h3>Working Techniques for Font Awesome and Bootstrap</h3>
+<p><mark>Decorative icons: do nothing</mark> or we can require aria-hidden true for consistency/Cliff's Narrator requires aria hidden true<p>
+<p>Meaninful icons: 
+<ul><li>Use aria label (with or without role="img")/CLiff's Narrator requires role=img</li>
+	<li>Use title (no role="img"); title doesn't work with Cliff's Narrator</li>
+	<li><mark>Since role="img" will be a requirement, use aria-label</mark></li>
+	<li><mark>aria-hidden cannot be true</mark></li>
+</ul>
+</p>
+	<h2>Google</h2><p> These have text labels by default. The text replaces graphic icon when css is removed. is aria-hidden needed?</p>
+	<ol>
+	<li><mark>Working Technique: <i class="material-icons">cloud</i>, (no edit); both: "cloud" read</mark></li>
+<li><mark>Working Technique: <i class="material-icons" aria-hidden="true">favorite</i>, (i attribute aria hidden true); both: not read</mark></li>
+<li><i class="material-icons" role="presentation">favorite</i>, (i attribute aria role=presentation); Kathy: favorite/CLIFF</li>
+<li><i class="material-icons" title="attach a file" role="img"><span aria-hidden="true">attachment</span></i>, (role=img, i title attribute added and google text aria hidden true); KE:nothing read/Cliff: "image attach a file"</li>
+<li><i class="material-icons" title="my workstation">computer</i>, (just a title, no role); both: read google text only "computer" Ititle doesn't work)</li>
+<li><mark>Working Technique: <i class="material-icons" aria-label="wait for instructions" role="img"><span aria-hidden="true">traffic</span></i>, (aria-label, role=img, google text hidden); both: only aria is read "wait for instructions")</mark></li>
+<li><i class="material-icons" title="my workstation" role="img">computer</i>, (title, role=img); KE: read google text only "computer"/Cliff: read title "image my workstation")</li>
+<li><i class="material-icons" alt="my workstation" role="img">computer</i>, (ALT, role=img); both: read google text "image computer" (ALT doesn't work)</li>
+<li><mark>Working Technique: <i class="material-icons" aria-label="wait for instructions" role="img">traffic</i>, (aria-label, role=img, google text not hidden); both: only aria is read "image wait for instructions"</mark></li>
+<li><i class="material-icons" aria-label="wait for instructions">traffic</i>, (aria-label, no role, google text not hidden); KE: only aria is read "wait for instructions"/Cliff: "text traffic"</li>
+<li><i class="material-icons" aria-label="wait for instructions" role="presentation">traffic</i>, (aria-label, role=presentation, google text not hidden); KE: google text is read "traffic"/CLIFF</li>
+</ol>
+<h3>Working Techniques for Google</h3>
+<p><mark>Decorative icons: aria hidden=true on i element (#2)</mark> (<p>
+<p>Meaningful icons: 
+<ul><li>Use aria label (with or without role="img"), (#5,7,8)/Cliff's Narrator requires role="img"</li>
+	<li>Title doesn't work at all</li>
+	<li><mark>Since role="img" will be a requirement, use aria-label</mark></li>
+	<li><mark>aria-hidden cannot be true</mark></li>
+</ul>
+</p>
+	<h2>Manually entered unicode</h2>
+	<p> These &#9728; (starts with &amp;&#35;) or &#x2600; (starts with &amp;&#35;x) are both read by Narrator as "sun". These are also read with pre-defined descriptions (no additional descriptions were added): &#9654; and &#169;, which are read as "right pointing triangle" and "copyright".</p>
+	<p>These are manually entered and don't read correctly: &#x2791; and &#x2661; <br> Added only aria label in span: <span aria-label="eight ball">&#x2791;</span>, (reads correctly), and title added in span <span title="white heart">&#x2661;</span>, (not read correctly). </p>
+	<p>role=presentation does not work:<br>
+	<span role="presentation">&#9728;</span> and <span role="presentation">&#9728;</span> are both read as "sun" and does not hide the icon.</p>
+	<p><mark> Working Technique for meaningful: Aria-label or title with role=image added in spans containing unicode.</mark> Both read correctly: <span role="img" aria-label="eight ball">&#x2791;</span>, <span role="img" title="white heart">&#x2661;</span>. 
+	</p>
+	<p><mark>Working Technique for decorative: aria-hidden<br>
+	<span aria-hidden="true">&#9728;</span> and <span aria-hidden="true">&#9728;</span> are both ignored.
+	<h2 id="stats"> <span aria-hidden="true" data-icon="&#x21dd;"></span> Stats</h2>
+<p>Above aria-hidden=true, text on screen.</p>
+<h2> <span data-icon="&#x21dd;"></span> Stats</h2>
+<p>Above no aria-hidden=true, text on screen.</p>
+<p>Aria-hidden true is not needed. But unknown which icons will be read, so </p>
+<img src="smallboy.jpg" alt="image thrown on page to trigger gANDI">
+<button onclick="HighlightIcons()">Highlight Icons</button> (doesn't highlight manually typed in unicode)
+   </body>
+   
+</html>
