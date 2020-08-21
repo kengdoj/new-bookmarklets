@@ -7,7 +7,8 @@
 <body>
 <div style="margin:20px">
 
-<table border="1" role="table">
+<table border="1" role="table" style="margin: 20px;">
+<caption>role=table</caption>
 <tr>
 	<th>Name</th>
     <th>Age</th>
@@ -22,6 +23,63 @@
 <th>Ben</th>
 <td>8</td>
 <td>Fish</td>
+</tr>
+</table>
+
+<table border="1" role="table" style="margin: 20px;"> 
+<caption>Role=table, role=row</caption>
+<tr role="row">
+	<th>Name</th>
+    <th>Age</th>
+    <th>Pet</th>
+</tr>
+<tr role="row">
+<th>Billy</th>
+<td>5</td>
+<td>Cat</td>
+</tr>
+<tr role="row">
+<th>Ben</th>
+<td>8</td>
+<td>Fish</td>
+</tr>
+</table>
+
+<table border="1" role="table" style="margin: 20px;"> 
+<caption>Role=table, role=row, column and row header</caption>
+<tr role="row">
+	<th role="columnheader">Name</th>
+    <th role="columnheader">Age</th>
+    <th role="columnheader">Pet</th>
+</tr>
+<tr role="row">
+<th role="rowheader">Billy</th>
+<td>5</td>
+<td>Cat</td>
+</tr>
+<tr role="row">
+<th role="rowheader">Ben</th>
+<td>8</td>
+<td>Fish</td>
+</tr>
+</table>
+
+<table border="1" role="table" style="margin: 20px;"> 
+<caption>No errors from ANDI: Role=table, role=row, column and row header, cell</caption>
+<tr role="row">
+	<th role="columnheader">Name</th>
+    <th role="columnheader">Age</th>
+    <th role="columnheader">Pet</th>
+</tr>
+<tr role="row">
+<th role="rowheader">Billy</th>
+<td role="cell">5</td>
+<td role="cell">Cat</td>
+</tr>
+<tr role="row">
+<th role="rowheader">Ben</th>
+<td role="cell">8</td>
+<td role="cell">Fish</td>
 </tr>
 </table>
 
